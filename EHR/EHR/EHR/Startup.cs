@@ -9,6 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Microsoft.EntityFrameworkCore;
+
+using EHRApp;
+using EHRRepository;
+using EHRRepository.DbContexts;
+using EHRDomain;
+
 namespace EHR
 {
     public class Startup
@@ -24,6 +31,14 @@ namespace EHR
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<EHRDbContext>(options =>
+                options.UseSqlite(connectionString, x => x.MigrationsAssembly("EHR")));
+
+            //dependency injection
+            services.AddScoped<PatientRepository>();
+            services.AddScoped<PatientApp>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

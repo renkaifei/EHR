@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHR", "EHR\EHR.csproj", "{86EA7E27-0FE7-4EC8-A1A2-E2C8127B31B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EHR", "EHR\EHR.csproj", "{86EA7E27-0FE7-4EC8-A1A2-E2C8127B31B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRApp", "EHRApp\EHRApp.csproj", "{00199037-98F2-4DFF-9601-4DD005A66F1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EHRApp", "EHRApp\EHRApp.csproj", "{00199037-98F2-4DFF-9601-4DD005A66F1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRDomain", "EHRDomain\EHRDomain.csproj", "{C0660DEA-F1D8-4BC5-8BDC-DA3F0713D50D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EHRDomain", "EHRDomain\EHRDomain.csproj", "{C0660DEA-F1D8-4BC5-8BDC-DA3F0713D50D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRRepository", "EHRRepository\EHRRepository.csproj", "{34781818-6332-43EC-87A3-D8A95AAB0479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EHRRepository", "EHRRepository\EHRRepository.csproj", "{34781818-6332-43EC-87A3-D8A95AAB0479}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRUtil", "EHRUtil\EHRUtil.csproj", "{1911B157-32DE-4CE3-86D6-06DE0F781AF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{34781818-6332-43EC-87A3-D8A95AAB0479}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34781818-6332-43EC-87A3-D8A95AAB0479}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34781818-6332-43EC-87A3-D8A95AAB0479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1911B157-32DE-4CE3-86D6-06DE0F781AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1911B157-32DE-4CE3-86D6-06DE0F781AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1911B157-32DE-4CE3-86D6-06DE0F781AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1911B157-32DE-4CE3-86D6-06DE0F781AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
