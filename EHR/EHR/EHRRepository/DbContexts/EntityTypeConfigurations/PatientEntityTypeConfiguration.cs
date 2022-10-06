@@ -18,7 +18,6 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.ToTable("Patient");
             builder.Property(b => b.Id).HasColumnType("int");  
 
-            builder.HasKey(b => b.Id);
         }
     }
 }

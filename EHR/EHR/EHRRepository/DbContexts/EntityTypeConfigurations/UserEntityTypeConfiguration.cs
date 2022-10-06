@@ -14,6 +14,7 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("User");
             builder.Property(b => b.Id).HasColumnType("int");
             builder.Property(b => b.FirstName).HasColumnType("varchar(128)");
             builder.Property(b => b.MiddleName).HasColumnType("varchar(128)");
@@ -24,6 +25,8 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.Property(b => b.UserType).HasColumnType("int");
             builder.Property(b => b.CreateTime).HasColumnType("datetime");
             builder.Property(b => b.UpdateTime).HasColumnType("datetime");
+
+            builder.HasKey(b => b.Id);
 
         }
     }
