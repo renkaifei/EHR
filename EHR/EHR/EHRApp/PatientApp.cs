@@ -20,7 +20,7 @@ namespace EHRApp
             m_patientRepository = patientRepository;
         }
 
-        public async Task<Patient> GetOne(int patientId)
+        public async Task<Patient> GetOneAsync(int patientId)
         {
             IQueryable<Patient> query = m_patientRepository.GetOne(patientId);
             Patient patient = await query.AsNoTracking().FirstOrDefaultAsync();
