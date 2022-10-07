@@ -29,5 +29,7 @@ namespace EHRDomain
         public DateTime CreateTime { get; set; }
 
         public DateTime UpdateTime { get; set; }
+
+        public List<UserRole> UserRoles { get; set; }
     }
 }

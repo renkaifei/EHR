@@ -24,6 +24,7 @@ namespace EHRRepository.DbContexts
             new UserEntityTypeConfiguration().Configure(modelBuilder.Entity<User>());
             new DepartmentEntityTypeConfiguration().Configure(modelBuilder.Entity<Department>());
             new RoleEntityTypeConfiguration().Configure(modelBuilder.Entity<Role>());
+            new UserRoleEntityTypeConfiguration().Configure(modelBuilder.Entity<UserRole>());
             new PatientEntityTypeConfiguration().Configure(modelBuilder.Entity<Patient>());
             new TumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<TumorMarker>());
             new PathologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Pathology>());
@@ -31,6 +32,10 @@ namespace EHRRepository.DbContexts
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<UserRole> UserRoles { get; set; }
 
         public DbSet<Patient> Patients { get; set; }
 

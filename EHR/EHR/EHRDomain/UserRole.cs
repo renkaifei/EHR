@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace EHRDomain
 {
-    public class Role
+    public class UserRole
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public int UserId { get; set; }
 
-        public int IsInBuilt { get; set; }
+        public int RoleId { get; set; }
 
         public DateTime CreateTime { get; set; }
 
         public DateTime UpdateTime { get; set; }
 
-        public List<UserRole> UserRoles { get; set; }
+        public User User { get; set; }
+        
+        public Role Role { get; set; }
     }
 }

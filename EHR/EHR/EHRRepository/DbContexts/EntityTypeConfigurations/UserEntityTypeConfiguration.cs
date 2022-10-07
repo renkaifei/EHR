@@ -27,7 +27,7 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.Property(b => b.UpdateTime).HasColumnType("datetime");
 
             builder.HasKey(b => b.Id);
-
+            builder.HasMany(b => b.UserRoles).WithOne(b => b.User).HasForeignKey(b => b.UserId);
         }
     }
 }
