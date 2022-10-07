@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EHRDomain", "EHRDomain\EHRD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EHRRepository", "EHRRepository\EHRRepository.csproj", "{34781818-6332-43EC-87A3-D8A95AAB0479}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRUtil", "EHRUtil\EHRUtil.csproj", "{1911B157-32DE-4CE3-86D6-06DE0F781AF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EHRUtil", "EHRUtil\EHRUtil.csproj", "{1911B157-32DE-4CE3-86D6-06DE0F781AF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F91A3AC-9703-4178-BAE9-836BA9F94268}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
