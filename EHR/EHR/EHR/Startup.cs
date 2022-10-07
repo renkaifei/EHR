@@ -30,15 +30,16 @@ namespace EHR
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddSwaggerGen();
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<EHRDbContext>(options =>
                 options.UseSqlite(connectionString, x => x.MigrationsAssembly("EHR")));
 
             //dependency injection
-            services.AddScoped<PatientRepository>();
-            services.AddScoped<PatientApp>();
+            services.AddScoped<UserRepository>();
+            services.AddScoped<UserApp>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +48,12 @@ namespace EHR
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                    options.RoutePrefix = string.Empty;
+                });
             }
             else
             {
