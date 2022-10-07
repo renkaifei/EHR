@@ -16,7 +16,7 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<PatientCase> builder)
         {
             builder.ToTable("PatientCase");
-            builder.Property(b => b.Id).HasColumnType("int");
+            builder.Property(b => b.Id).HasColumnType("integer");
 
             builder.HasKey(b => b.Id);
             builder.HasOne(b => b.Pathology)

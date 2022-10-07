@@ -16,7 +16,7 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Pathology> builder)
         {
             builder.ToTable("Pathology");
-            builder.Property(b => b.Id).HasColumnType("int");
+            builder.Property(b => b.Id).HasColumnType("integer");
             builder.Property(b => b.Report).HasColumnType("varchar(4000)");
             builder.Property(b => b.ClinicalNotes).HasColumnType("varchar(4000)");
             builder.Property(b => b.CreateTime).HasColumnType("datetime");
