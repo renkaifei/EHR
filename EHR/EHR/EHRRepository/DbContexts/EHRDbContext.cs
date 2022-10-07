@@ -22,6 +22,8 @@ namespace EHRRepository.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             new UserEntityTypeConfiguration().Configure(modelBuilder.Entity<User>());
+            new DepartmentEntityTypeConfiguration().Configure(modelBuilder.Entity<Department>());
+            new RoleEntityTypeConfiguration().Configure(modelBuilder.Entity<Role>());
             new PatientEntityTypeConfiguration().Configure(modelBuilder.Entity<Patient>());
             new TumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<TumorMarker>());
             new PathologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Pathology>());
