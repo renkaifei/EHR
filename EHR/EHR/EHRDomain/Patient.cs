@@ -10,7 +10,7 @@ namespace EHRDomain
     {
         public Patient()
         {
-            UserType = 1;
+            
         }
 
         public List<PatientCase> PatientCases { get; set; }

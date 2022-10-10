@@ -22,7 +22,6 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.Property(b => b.Address).HasColumnType("varchar(512)");
             builder.Property(b => b.LoginName).HasColumnType("varchar(128)");
             builder.Property(b => b.Password).HasColumnType("varchar(128)");
-            builder.Property(b => b.UserType).HasColumnType("integer");
             builder.Property(b => b.CreateTime).HasColumnType("datetime");
             builder.Property(b => b.UpdateTime).HasColumnType("datetime");
 

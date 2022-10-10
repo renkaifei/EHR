@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "chart.js@3.9.1",
+      "destination": "wwwroot/lib/chart.js/",
+      "files": [
+        "dist/chart.min.js",
+        "dist/chart.js"
+      ]
+    }
+  ]
+}

@@ -21,10 +21,6 @@ namespace EHRDomain
         public string LoginName { get; set; }
 
         public string Password { get; set; }
-        /// <summary>
-        /// 1 doctor
-        /// </summary>
-        public int UserType { get; set; }
 
         public DateTime CreateTime { get; set; }
 
