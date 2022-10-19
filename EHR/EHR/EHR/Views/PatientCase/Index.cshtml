@@ -4,12 +4,20 @@
     </div>
 </div>
 <div data-options="region:'center'" style="padding:5px;background:#eee;">
-
+    <div id="patientCasetabs"></div>
 </div>
 
-@section Scripts{ 
+@section Scripts{
+    <script src="~/lib/chart.js/dist/chart.min.js"></script>
     <script src="~/js/domain/user.js"></script>
-    <script src="~/js/service/userservice.js"></script>
+    <script src="~/js/domain/patient.js"></script>
+    <script src="~/js/domain/patientCase.js"></script>
+    <script src="~/js/domain/pathology.js"></script>
+    <script src="~/js/domain/tumorMarker.js"></script>
+    <script src="~/js/domain/pathologyTumorMarker.js"></script>
+    <script src="~/js/service/patientService.js"></script>
+    <script src="~/js/service/patientCaseService.js"></script>
+    <script src="~/js/service/pathologyService.js"></script>
     <script src="~/js/patientcase/index.js"></script>
 }
 

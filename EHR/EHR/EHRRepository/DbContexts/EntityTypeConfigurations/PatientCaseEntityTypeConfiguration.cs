@@ -17,12 +17,12 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
         {
             builder.ToTable("PatientCase");
             builder.Property(b => b.Id).HasColumnType("integer");
+            builder.Property(b => b.PatientId).HasColumnType("integer");
 
             builder.HasKey(b => b.Id);
             builder.HasOne(b => b.Pathology)
                 .WithOne(b => b.PatientCase)
                 .HasForeignKey<Pathology>(b => b.PatientCaseId);
-
         }
     }
 }

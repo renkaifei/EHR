@@ -22,10 +22,11 @@ namespace EHRRepository.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             new UserEntityTypeConfiguration().Configure(modelBuilder.Entity<User>());
+            new PatientEntityTypeConfiguration().Configure(modelBuilder.Entity<Patient>());
             new DepartmentEntityTypeConfiguration().Configure(modelBuilder.Entity<Department>());
             new RoleEntityTypeConfiguration().Configure(modelBuilder.Entity<Role>());
             new UserRoleEntityTypeConfiguration().Configure(modelBuilder.Entity<UserRole>());
-            new PatientEntityTypeConfiguration().Configure(modelBuilder.Entity<Patient>());
+            new PatientCaseEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientCase>());
             new TumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<TumorMarker>());
             new PathologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Pathology>());
             new PathologyTumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<PathologyTumorMarker>());
@@ -33,11 +34,13 @@ namespace EHRRepository.DbContexts
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Patient> Patients { get; set; }
+
         public DbSet<Role> Roles { get; set; }
 
         public DbSet<UserRole> UserRoles { get; set; }
 
-        public DbSet<Patient> Patients { get; set; }
+        public DbSet<PatientCase> PatientCases { get; set; }
 
         public DbSet<TumorMarker> TumorMarkers { get; set; }
 

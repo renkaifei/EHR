@@ -23,14 +23,13 @@ namespace EHR.Apis
         }
 
         [HttpPost]
-        [Route("api/patient/getone")]
-        [Produces("application/json")]
-        public async Task<OutputBaseViewModel> GetOneAsync(int patientId)
+        [Route("api/patient/getOneById")]
+        public async Task<OutputBaseViewModel> GetOneAsync([FromForm]int id)
         {
             ResultViewModel<Patient> result = new ResultViewModel<Patient>();
             try
             {
-                Patient patient = await m_patientApp.GetOneAsync(patientId);
+                Patient patient = await m_patientApp.GetOneAsync(id);
                 result.Data = patient;
             }
             catch (Exception ex)

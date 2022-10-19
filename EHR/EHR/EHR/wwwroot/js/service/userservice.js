@@ -2,7 +2,7 @@
 
 }
 
-UserService.prototype.GetOne = function (userId,successCallback,errorCallback) {
+UserService.prototype.GetOneById = function (userId,successCallback,errorCallback) {
     $.ajax({
         url: "/api/user/getone",
         type: "post",

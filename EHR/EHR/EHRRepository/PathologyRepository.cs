@@ -25,5 +25,11 @@ namespace EHRRepository
             IQueryable<Pathology> query = m_dbContext.Pathologys.Where(item => item.Id == id);
             return query;
         }
+
+        public IQueryable<Pathology> GetOneByPatientCaseId(int patientCaseId)
+        {
+            IQueryable<Pathology> query = m_dbContext.Pathologys.Where(item => item.PatientCaseId == patientCaseId);
+            return query;
+        }
     }
 }

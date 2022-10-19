@@ -24,7 +24,7 @@ namespace EHR.Apis
 
         [Route("api/pathology/getonebyid")]
         [HttpPost]
-        public async Task<OutputBaseViewModel> GetOneById(int id)
+        public async Task<OutputBaseViewModel> GetOneById([FromForm]int id)
         {
             ResultViewModel<Pathology> result = new ResultViewModel<Pathology>();
             try
@@ -34,6 +34,24 @@ namespace EHR.Apis
             catch (Exception ex)
             {
                 result.Status = 100101;
+                result.Message = ex.GetMessage();
+            }
+            return result;
+        }
+
+        [HttpPost]
+        [Route("api/pathology/getOneByPatientCaseId")]
+        public async Task<OutputBaseViewModel> GetOneByPatientCaseId([FromForm]int patientCaseId)
+        {
+            ResultViewModel<Pathology> result = new ResultViewModel<Pathology>();
+            try
+            {
+                result.Data = await m_pathologyApp.GetOneByPatientCaseIdAsync(patientCaseId)
+                    .ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                result.Status = 100102;
                 result.Message = ex.GetMessage();
             }
             return result;

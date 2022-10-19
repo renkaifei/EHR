@@ -10,6 +10,10 @@ namespace EHRDomain
     {
         public int Id { get; set; }
 
+        public int PatientId { get; set; }
+
+        public Patient Patient { get; set; } 
+
         public Pathology Pathology { get; set; }
     }
 }

@@ -15,6 +15,7 @@ using EHRApp;
 using EHRRepository;
 using EHRRepository.DbContexts;
 using EHRDomain;
+using Microsoft.Extensions.Logging;
 
 namespace EHR
 {
@@ -30,16 +31,33 @@ namespace EHR
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddLogging(cfg => {
+                cfg.AddLog4Net();
+            });
+            services.AddControllersWithViews().AddNewtonsoftJson(options => {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.DateFormatString = "yyyy-MM-dd";
+            });
             services.AddSwaggerGen();
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<EHRDbContext>(options =>
-                options.UseSqlite(connectionString, x => x.MigrationsAssembly("EHR")));
+            {
+                options.UseSqlite(connectionString, x => x.MigrationsAssembly("EHR"));
+                options.UseLoggerFactory(LoggerFactory.Create(cfg => cfg.AddLog4Net()));
+                options.EnableSensitiveDataLogging();
+            });
 
             //dependency injection
             services.AddScoped<UserRepository>();
             services.AddScoped<UserApp>();
+            services.AddScoped<PatientRepository>();
+            services.AddScoped<PatientApp>();
+            services.AddScoped<PatientCaseRepository>();
+            services.AddScoped<PatientCaseApp>();
+            services.AddScoped<PathologyRepository>();
+            services.AddScoped<PathologyApp>();
+            services.AddScoped<PathologyTumorMarkerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +72,7 @@ namespace EHR
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                     options.RoutePrefix = string.Empty;
                 });
+                app.UseHttpsRedirection();
             }
             else
             {
@@ -61,7 +80,6 @@ namespace EHR
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -72,7 +90,7 @@ namespace EHR
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=PatientCase}/{action=Index}/{id?}");
             });
         }
     }
