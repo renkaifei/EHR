@@ -75,6 +75,7 @@ Pathology.prototype.buildLineChartOfCA19_9 = function (ctx) {
             responsive:false
         }
     });
+    return chart;
 }
 
 Pathology.prototype.buildLineChartOfCEA = function (ctx) {
@@ -147,7 +148,7 @@ Pathology.prototype.buildLineChartOfCEA = function (ctx) {
         }
     });
 
-
+    return chart;
 }
 
 Pathology.prototype.buildStaticsGrid = function ($grid) {

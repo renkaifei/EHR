@@ -56,5 +56,22 @@ namespace EHR.Apis
             }
             return result;
         }
+
+        [HttpPost]
+        [Route("api/pathology/updateClinicalNotes")]
+        public async Task<OutputBaseViewModel> UpdateClinicalNotesAsync([FromForm]int id,[FromForm] string clinicalNotes)
+        {
+            ResultViewModel<Pathology> result = new ResultViewModel<Pathology>();
+            try
+            {
+                result.Data = await m_pathologyApp.UpdateClinicalNotesAsync(id, clinicalNotes).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                result.Status = 100103;
+                result.Message = ex.GetMessage();
+            }
+            return result;
+        }
     }
 }

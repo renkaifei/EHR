@@ -19,3 +19,7 @@ PathologyTumorMarker.prototype.getUnit = function () {
     return this.tumorMarker.unit;
 }
 
+PathologyTumorMarker.prototype.getMaxValue = function () {
+    return this.tumorMarker.maxValue;
+}
+

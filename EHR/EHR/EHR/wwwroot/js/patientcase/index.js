@@ -56,7 +56,7 @@ function initializeComponent() {
         height: 200,
         title: "Clinical Notes",
         content: "<input id='txtClinicalNotes' type='text' style='height:120px;width:445px'>"
-            + "<button id='btnSave' style='float:right;margin:2px 5px;'>save</button>",
+            + "<button id='btnSaveClinicalNotes' style='float:right;margin:2px 5px;'>save</button>",
         minimizable: true,
         maximizable: true,
         closable: true
@@ -64,7 +64,17 @@ function initializeComponent() {
     $("#txtClinicalNotes").textbox({
         multiline: true,
     });
-    $("#btnSave").linkbutton({
+    $("#btnSaveClinicalNotes").linkbutton().on("click", function () {
+        var clinicalNotes = $("#txtClinicalNotes").textbox("getValue");
+        pathologyService.updateClinicalNotes({
+            id: pathology.id,
+            clinicalNotes: clinicalNotes
+        }, function (data) {
+            pathology.clinicalNotes = data.clinicalNotes;
+            $.messager.alert('info', 'success', "info");
+        }, function (message) {
+            $.messager.alert('error', message, "error");
+        })
     });
     $("#pnlTumorMarkersLabValues").panel({
         width: 400,
@@ -94,10 +104,10 @@ function pageLoad() {
             patient = data;
             $lblPatientName.text(patient.getFullName());
         }, function (message) {
-            $.messager.alert('错误', message, "error");
+            $.messager.alert('error', message, "error");
         });
     }, function (message) {
-        $.messager.alert('错误', message, "error");
+        $.messager.alert('error', message, "error");
     });
     pathologyService.getOneByPatientCaseId(patientCaseId, function (data) {
         pathology = data;
@@ -105,11 +115,12 @@ function pageLoad() {
         pathology.buildLineChartOfCA19_9(canvas_ca19_9);
         var canvas_cea = document.getElementById("chart_cea").getContext('2d');
         pathology.buildLineChartOfCEA(canvas_cea);
+        $("#txtClinicalNotes").textbox("setValue", pathology.clinicalNotes);
         var $tblTumorMarkersLabValues = $("#tblTumorMarkersLabValues");
         pathology.buildStaticsGrid($tblTumorMarkersLabValues);
         $("#pPathologyReport").text(pathology.report);
     }, function (message) {
-        $.messager.alert('错误', message, "error");
+        $.messager.alert('error', message, "error");
     });
 }
 

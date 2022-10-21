@@ -11,16 +11,13 @@ using EHRDomain;
 
 namespace EHRApp
 {
-    public class PathologyApp
+    public sealed class PathologyApp
     {
-        private PathologyRepository m_pathologyRepository;
-        private PathologyTumorMarkerRepository m_pathologyTumorMarkerRepository;
+        private readonly PathologyRepository m_pathologyRepository;
 
-        public PathologyApp(PathologyRepository pathologyRepository,
-            PathologyTumorMarkerRepository pathologyTumorMarkerRepository)
+        public PathologyApp(PathologyRepository pathologyRepository)
         {
             m_pathologyRepository = pathologyRepository;
-            m_pathologyTumorMarkerRepository = pathologyTumorMarkerRepository;
         }
 
         public async Task<Pathology> GetOneByIdAsync(int id)
@@ -35,6 +32,16 @@ namespace EHRApp
             IQueryable<Pathology> queryPathology = m_pathologyRepository.GetOneByPatientCaseId(patientCaseId);
             queryPathology = queryPathology.Include(item => item.PathologyTumorMarkers).ThenInclude(item => item.TumorMarker);
             Pathology pathology = await queryPathology.AsNoTracking().FirstOrDefaultAsync().ConfigureAwait(false);
+            return pathology;
+        }
+
+        public async Task<Pathology> UpdateClinicalNotesAsync(int pathologyId,string clinicalNotes)
+        {
+            IQueryable<Pathology> queryPathology = m_pathologyRepository.GetOneById(pathologyId);
+            Pathology pathology = await queryPathology.FirstOrDefaultAsync();
+            pathology.ClinicalNotes = clinicalNotes;
+            pathology.UpdateTime = DateTime.Now;
+            await m_pathologyRepository.SaveChangesAsync().ConfigureAwait(false);
             return pathology;
         }
     }

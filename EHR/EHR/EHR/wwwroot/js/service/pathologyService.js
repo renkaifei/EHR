@@ -80,3 +80,28 @@ PathologyService.prototype.getOneByPatientCaseId = function (patientCaseId,succe
         }
     });
 }
+
+PathologyService.prototype.updateClinicalNotes = function (pathology, successCallback, errorCallback) {
+    $.ajax({
+        url: "/api/pathology/updateClinicalNotes",
+        type: "post",
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+            id: pathology.id,
+            clinicalNotes: pathology.clinicalNotes
+        },
+        success: function (resp) {
+            if (resp.status != 100000) {
+                errorCallback(resp.message);
+            } else {
+                var pathology = new Pathology();
+                pathology.id = resp.data.id;
+                pathology.report = resp.data.report;
+                pathology.clinicalNotes = resp.data.clinicalNotes;
+                pathology.patientCaseId = resp.data.patientCaseId;
+                successCallback(pathology);
+            }
+        }
+    });
+}
