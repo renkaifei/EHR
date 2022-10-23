@@ -3,6 +3,7 @@
     this.firstName = "";
     this.middleName = "";
     this.lastName = "";
+    this.age = 0;
     this.address = "";
     this.loginName = "";
 }

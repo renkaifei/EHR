@@ -1,7 +1,17 @@
-﻿<div data-options="region:'west',split:true" style="width:200px;">
-    <div style="text-align: center; padding: 5px 20px 5px 20px;margin:10px; border: 2px solid black; box-shadow: 2px 2px 0px 2px #ccc; ">
-        <label id="lblPatientName"></label>
+﻿<div data-options="region:'north',split:false,collapsible:true,title:'patient information'" style="height:65px">
+    <div>
+        <table>
+            <tr>
+                <td style="width:200px">Patient:<label id="lblPatientName"></label></td>
+                <td style="width:200px">Age:<label id="lblAge"></label></td>
+                <td style="width:200px">MRN:64002090</td>
+                <td style="width:200px">Allergies:<label id="lblAllergies"></label></td>
+            </tr>
+        </table>
     </div>
+</div>
+<div data-options="region:'west',title:'Workflow',collapsible:false" style="width:300px;">
+    <div id="leftSideMenu"></div>
 </div>
 <div data-options="region:'center'" style="padding:5px;background:#eee;">
     <div id="patientCasetabs"></div>

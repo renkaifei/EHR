@@ -18,6 +18,7 @@ PatientService.prototype.getOneById = function (id,successCallback,errorCallback
                 patient.firstName = resp.data.firstName;
                 patient.middleName = resp.data.middleName;
                 patient.lastName = resp.data.lastName;
+                patient.age = resp.data.age;
                 patient.loginName = resp.data.loginName;
                 patient.address = resp.data.address;
                 successCallback(patient);

@@ -16,6 +16,8 @@ namespace EHRDomain
 
         public string LastName { get; set; }
 
+        public int Age { get; set; }
+
         public string Address { get; set; }
 
         public string LoginName { get; set; }

@@ -7,6 +7,9 @@ var patientCase;
 var pathology;
 
 var $lblPatientName;
+var $lblAge;
+var $lblAllergies;
+var $leftSideMenu;
 var $patientCasetabs;
 
 $(function () {
@@ -15,15 +18,56 @@ $(function () {
 });
 
 function initializeComponent() {
-    patientService = new PatientService();
-    patientCaseService = new PatientCaseService();
-    pathologyService = new PathologyService();
-
     $lblPatientName = $("#lblPatientName");
+    $lblAge = $("#lblAge");
+    $lblAllergies = $("#lblAllergies");
     $patientCasetabs = $("#patientCasetabs");
+    $leftSideMenu = $("#leftSideMenu");
+    $leftSideMenu.sidemenu({
+        width: 300,
+        data: [{
+            text: "Chief Complaint and Histories"
+        }, {
+            text: "Labortory Test Results",
+            status: "open",
+            children: [{
+                text: "Pathology",
+            }]
+        }, {
+            text: "Physical Examinaition"
+        }, {
+            text: "Assessment"
+        }, {
+            text: "Planning"
+        }, {
+            text: "Orders",
+            status: "closed",
+            children: [{
+                text: "Patient portal"
+            }, {
+                text: "Pathology"
+            }, {
+                text: "Radiology"
+            }, {
+                text: "Medications"
+            }, {
+                text: "Therapies"
+            }, {
+                text: "Follow-up visit"
+            }]
+        }, {
+            text: "Documents",
+            status: "closed",
+            children: [{
+                text: "Shared Visit Notes and Plan"
+            }]
+        }]
+    });
+
+
     $patientCasetabs.tabs({
         fit: true,
-        border:true
+        border: true
     });
     $patientCasetabs.tabs('add', {
         title: 'Pathology',
@@ -45,11 +89,11 @@ function initializeComponent() {
         title: "Tumor Markers Trends",
         content: "<div>"
             + "<canvas id='chart_ca19_9' height='250' width='400'></canvas>"
-            +"<canvas id='chart_cea' height='300' width='400'></canvas>"
+            + "<canvas id='chart_cea' height='300' width='400'></canvas>"
             + "</div>",
         minimizable: true,
         maximizable: true,
-        closable:true
+        closable: true
     });
     $("#pnlClinicalNotes").panel({
         width: 450,
@@ -80,7 +124,7 @@ function initializeComponent() {
         width: 400,
         height: 200,
         title: "Tumor Markers Lab Values",
-        content:"<table id='tblTumorMarkersLabValues'></table>",
+        content: "<table id='tblTumorMarkersLabValues'></table>",
         minimizable: true,
         maximizable: true,
         closable: true
@@ -89,7 +133,7 @@ function initializeComponent() {
         width: 400,
         height: 200,
         title: "Pathology Report",
-        content:"<p id='pPathologyReport'></p>",
+        content: "<p id='pPathologyReport'></p>",
         minimizable: true,
         maximizable: true,
         closable: true
@@ -97,12 +141,21 @@ function initializeComponent() {
 }
 
 function pageLoad() {
+    //service initialize
+    patientService = new PatientService();
+    patientCaseService = new PatientCaseService();
+    pathologyService = new PathologyService();
+
+    //initialize test data;
     var patientCaseId = 1;
+
+    //get patientCaseInfo;
     patientCaseService.getOneById(patientCaseId, function (data) {
         patientCase = data;
         patientService.getOneById(patientCase.patientId, function (data) {
             patient = data;
             $lblPatientName.text(patient.getFullName());
+            $lblAge.text(patient.age);
         }, function (message) {
             $.messager.alert('error', message, "error");
         });
