@@ -8,5 +8,9 @@
 }
 
 User.prototype.getFullName = function () {
-    return this.firstName + this.middleName + this.lastName;
+    if (this.middleName == null || this.middleName == "") {
+        return this.firstName + ", " + this.lastName;
+    } else {
+        return this.firstName + ", " + this.middleName + ", " + this.lastName;
+    }
 }
