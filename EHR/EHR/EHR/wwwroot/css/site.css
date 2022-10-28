@@ -75,3 +75,7 @@ body {
 .current {
     background-color:deepskyblue;
 }
+
+.hidden {
+    display:none;
+}

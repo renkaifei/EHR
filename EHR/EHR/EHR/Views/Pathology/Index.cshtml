@@ -1,0 +1,22 @@
+﻿<div style="margin-top:2px">
+    <button id="btnShowPnlCAGraph">CAGraph</button>
+    <button id="btnShowPnlFlowsheet">Flowsheet</button>
+    <button id="btnShowPnlCEAGraph">CEAGraph</button>
+    <button id="btnShowPnlReports">Reports</button>
+    <button id="btnShowPnlPathologySharedNotes">Pathology Shared Notes</button>
+</div>
+<div id="panelContainer" style="width:810px;display:flex;">
+    <div id="pnlCAGraph"></div>
+    <div id="pnlFlowsheet"></div>
+    <div id="pnlCEAGraph"></div>
+    <div id="pnlReports"></div>
+    <div id="pnlPathologySharedNotes"></div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/components/Panel.js"></script>
+    <script src="~/js/components/CAGraphChartPanel.js"></script>
+    <script src="~/js/components/FlowsheetGridPanel.js"></script>
+    <script src="~/js/pathology/index.js"></script>
+}
