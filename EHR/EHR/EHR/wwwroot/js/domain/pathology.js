@@ -6,7 +6,7 @@
     this.pathologyTumorMarkers = [];
 }
 
-Pathology.prototype.buildLineChartOfCA19_9 = function (ctx) {
+Pathology.prototype.buildChartCA = function (ctx) {
     var labels = [];
     var realData = [];
     var targetData = [];
@@ -71,14 +71,13 @@ Pathology.prototype.buildLineChartOfCA19_9 = function (ctx) {
                         stepSize:10
                     }
                 }
-            },
-            responsive:false
+            }
         }
     });
     return chart;
 }
 
-Pathology.prototype.buildLineChartOfCEA = function (ctx) {
+Pathology.prototype.buildChartCEA = function (ctx) {
     var labels = [];
     var realData = [];
     var targetData = [];
@@ -89,6 +88,7 @@ Pathology.prototype.buildLineChartOfCEA = function (ctx) {
             targetData.push(this.pathologyTumorMarkers[i].tumorMarker.maxValue);
         }
     }
+
     var chart = new Chart(ctx, {
         type: "line",
         data: {
@@ -143,8 +143,7 @@ Pathology.prototype.buildLineChartOfCEA = function (ctx) {
                         stepSize: 1
                     }
                 }
-            },
-            responsive: false
+            }
         }
     });
 
@@ -177,7 +176,7 @@ Pathology.prototype.buildStaticsGrid = function ($grid) {
         arrResult.push(result[key]);
     }
 
-    $grid.datagrid({
+    return $grid.datagrid({
         columns: [[
             { field: "name", title: "Test", align: "left" },
             { field: "average", title: "Result",  align: "left" },

@@ -2,8 +2,10 @@
     this.preState = "normal";
     this.state = "normal";
     this.id = "";
+    this.name = "";
     this.height = 400;
-    this.width = 400;
+    this.width = 500;
+    this.style = "";
     this.title = "";
     this.onBeforeMaximize = function () { };
     this.onMaximize = function () { };
@@ -20,7 +22,8 @@ Panel.prototype.build = function () {
     this.getJqueryObj().panel({
         title: this.title,
         height: this.height,
-        width:this.width,
+        width: this.width,
+        style: this.style || {},
         minimizable: true,
         maximizable: true,
         closable: false,
@@ -28,19 +31,19 @@ Panel.prototype.build = function () {
             self.onBeforeMaximize();
         },
         onMaximize: function () {
-            self.onMaximize();
             self.preState = self.state;
             self.state = "maximize";
+            self.onMaximize();  
         },
         onMinimize: function () {
-            self.onMinimize();
             self.preState = self.state;
             self.state = "minimize";
+            self.onMinimize();
         },
         onRestore: function () {
-            self.onRestore();
             self.preState = self.state;
             self.state = "normal";
+            self.onRestore();
         }
     });
 }

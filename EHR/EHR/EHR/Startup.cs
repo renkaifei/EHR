@@ -58,6 +58,8 @@ namespace EHR
             services.AddScoped<PathologyRepository>();
             services.AddScoped<PathologyApp>();
             services.AddScoped<PathologyTumorMarkerRepository>();
+            services.AddScoped<TumorMarkerRepository>();
+            services.AddScoped<TumorMarkerApp>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

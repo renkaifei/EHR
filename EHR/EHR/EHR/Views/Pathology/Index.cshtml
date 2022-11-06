@@ -5,7 +5,7 @@
     <button id="btnShowPnlReports">Reports</button>
     <button id="btnShowPnlPathologySharedNotes">Pathology Shared Notes</button>
 </div>
-<div id="panelContainer" style="width:810px;display:flex;">
+<div id="panelContainer" style="display:flex;height:100%;width:1050px;flex-flow:wrap;flex:1;overflow-y:auto">
     <div id="pnlCAGraph"></div>
     <div id="pnlFlowsheet"></div>
     <div id="pnlCEAGraph"></div>
@@ -14,9 +14,19 @@
 </div>
 
 
+
 @section Scripts{
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/lib/chart.js/dist/chart.min.js"></script>
+    <script src="~/js/domain/pathology.js"></script>
+    <script src="~/js/domain/tumorMarker.js"></script>
+    <script src="~/js/domain/pathologyTumorMarker.js"></script>
     <script src="~/js/components/Panel.js"></script>
     <script src="~/js/components/CAGraphChartPanel.js"></script>
     <script src="~/js/components/FlowsheetGridPanel.js"></script>
+    <script src="~/js/components/CEAGraphChartPanel.js"></script>
+    <script src="~/js/components/ReportPanel.js"></script>
+    <script src="~/js/components/PathologySharedNotesPanel.js"></script>
+    <script src="~/js/service/pathologyService.js"></script>
     <script src="~/js/pathology/index.js"></script>
 }

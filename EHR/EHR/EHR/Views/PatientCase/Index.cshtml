@@ -14,20 +14,15 @@
     <div id="leftSideMenu"></div>
 </div>
 <div data-options="region:'center'" style="padding:5px;background:#eee;">
-    <div id="patientCasetabs"></div>
+    <iframe id="myContainer" height="100%" width="100%" frameborder="0" scrolling="no" style="background-color:white"></iframe>
 </div>
 
 @section Scripts{
-    <script src="~/lib/chart.js/dist/chart.min.js"></script>
     <script src="~/js/domain/user.js"></script>
     <script src="~/js/domain/patient.js"></script>
     <script src="~/js/domain/patientCase.js"></script>
-    <script src="~/js/domain/pathology.js"></script>
-    <script src="~/js/domain/tumorMarker.js"></script>
-    <script src="~/js/domain/pathologyTumorMarker.js"></script>
     <script src="~/js/service/patientService.js"></script>
     <script src="~/js/service/patientCaseService.js"></script>
-    <script src="~/js/service/pathologyService.js"></script>
     <script src="~/js/patientcase/index.js"></script>
 }
 

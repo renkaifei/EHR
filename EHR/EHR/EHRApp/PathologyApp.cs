@@ -23,14 +23,14 @@ namespace EHRApp
         public async Task<Pathology> GetOneByIdAsync(int id)
         {
             IQueryable<Pathology> queryPathology = m_pathologyRepository.GetOneById(id);
-            queryPathology = queryPathology.Include(item => item.PathologyTumorMarkers).ThenInclude(item => item.TumorMarker);
+            queryPathology = queryPathology.Include(item => item.PathologyTumorMarkers);
             return await queryPathology.AsNoTracking().FirstOrDefaultAsync().ConfigureAwait(false);
         }
 
         public async Task<Pathology> GetOneByPatientCaseIdAsync(int patientCaseId)
         {
             IQueryable<Pathology> queryPathology = m_pathologyRepository.GetOneByPatientCaseId(patientCaseId);
-            queryPathology = queryPathology.Include(item => item.PathologyTumorMarkers).ThenInclude(item => item.TumorMarker);
+            queryPathology = queryPathology.Include(item => item.PathologyTumorMarkers);
             Pathology pathology = await queryPathology.AsNoTracking().FirstOrDefaultAsync().ConfigureAwait(false);
             return pathology;
         }

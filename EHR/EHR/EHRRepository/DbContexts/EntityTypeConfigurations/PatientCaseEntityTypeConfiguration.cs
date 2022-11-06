@@ -23,6 +23,7 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.HasOne(b => b.Pathology)
                 .WithOne(b => b.PatientCase)
                 .HasForeignKey<Pathology>(b => b.PatientCaseId);
+
         }
     }
 }
