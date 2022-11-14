@@ -22,6 +22,8 @@ function initializeComponent() {
     $btnShowPnlCAGraph.on("click", function () {
         $(this).hide();
         caGraphChartPanel.open();
+        caGraphChartPanel.state = caGraphChartPanel.preState;
+        caGraphChartPanel.preState = "minimize";
     });
     $btnShowPnlCAGraph.hide();
 
@@ -30,6 +32,8 @@ function initializeComponent() {
     $btnShowPnlFlowsheet.on("click", function () {
         $(this).hide();
         flowsheetGridPanel.open();
+        flowsheetGridPanel.state = flowsheetGridPanel.preState;
+        flowsheetGridPanel.preState = "minimize";
     });
     $btnShowPnlFlowsheet.hide();
 
@@ -38,6 +42,8 @@ function initializeComponent() {
     $btnShowPnlCEAGraph.on("click", function () {
         $(this).hide();
         ceaGraphChartPanel.open();
+        ceaGraphChartPanel.state = ceaGraphChartPanel.preState;
+        ceaGraphChartPanel.preState = "minimize";
     });
     $btnShowPnlCEAGraph.hide();
 
@@ -46,6 +52,8 @@ function initializeComponent() {
     $btnShowPnlReports.on("click", function () {
         $(this).hide();
         reportPanel.open();
+        reportPanel.state = reportPanel.preState;
+        reportPanel.preState = "minimize";
     });
     $btnShowPnlReports.hide();
 
@@ -54,6 +62,8 @@ function initializeComponent() {
     $btnShowPnlPathologySharedNotes.on("click", function () {
         $(this).hide();
         sharedNotesPanel.open();
+        sharedNotesPanel.state = sharedNotesPanel.preState;
+        sharedNotesPanel.preState = "minimize";
     });
     $btnShowPnlPathologySharedNotes.hide();
 

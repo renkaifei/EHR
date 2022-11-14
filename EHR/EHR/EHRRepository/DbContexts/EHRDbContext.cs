@@ -30,6 +30,8 @@ namespace EHRRepository.DbContexts
             new TumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<TumorMarker>());
             new PathologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Pathology>());
             new PathologyTumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<PathologyTumorMarker>());
+            new RadiologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Radiology>());
+            new CTImageEntityTypeConfiguration().Configure(modelBuilder.Entity<CTImage>());
         }
 
         public DbSet<User> Users { get; set; }
@@ -47,6 +49,10 @@ namespace EHRRepository.DbContexts
         public DbSet<Pathology> Pathologys { get; set; }
 
         public DbSet<PathologyTumorMarker> PathologyTumorMarkers { get; set; }
+
+        public DbSet<Radiology> Radiologys { get; set; }
+
+        public DbSet<CTImage> CTImages { get; set; }
 
     }
 }

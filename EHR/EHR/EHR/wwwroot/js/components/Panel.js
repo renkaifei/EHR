@@ -54,5 +54,4 @@ Panel.prototype.close = function () {
 
 Panel.prototype.open = function () {
     this.getJqueryObj().panel("open");
-    this.state = this.preState;
 }

@@ -16,6 +16,8 @@ using EHRRepository;
 using EHRRepository.DbContexts;
 using EHRDomain;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace EHR
 {
@@ -31,10 +33,12 @@ namespace EHR
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogging(cfg => {
+            services.AddLogging(cfg =>
+            {
                 cfg.AddLog4Net();
             });
-            services.AddControllersWithViews().AddNewtonsoftJson(options => {
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd";
             });
@@ -60,6 +64,8 @@ namespace EHR
             services.AddScoped<PathologyTumorMarkerRepository>();
             services.AddScoped<TumorMarkerRepository>();
             services.AddScoped<TumorMarkerApp>();
+            services.AddScoped<RadiologyRepository>();
+            services.AddScoped<RadiologyApp>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,6 +89,11 @@ namespace EHR
                 app.UseHsts();
             }
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Configuration["AppSettings:StaticFileDirectory"]),
+                RequestPath = "/StaticFiles"
+            });
 
             app.UseRouting();
 

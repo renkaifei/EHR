@@ -20,8 +20,8 @@ function initializeComponent() {
     $lblAllergies = $("#lblAllergies");
     $leftSideMenu = $("#leftSideMenu");
     $leftSideMenu.sidemenu({
-        width: 300,
-        border:false,
+        width: 295,
+        border: false,
         data: [{
             text: "Chief Complaint and Histories"
         }, {
@@ -31,6 +31,11 @@ function initializeComponent() {
                 text: "Pathology",
                 attributes: {
                     "url": "/Pathology/Index"
+                }
+            }, {
+                text: "Radiology",
+                attributes: {
+                    "url": "/Radiology/Index"
                 }
             }]
         }, {
@@ -61,11 +66,11 @@ function initializeComponent() {
             children: [{
                 text: "Shared Visit Notes and Plan"
             }]
-            }],
+        }],
         onSelect: function (item) {
             if ("attributes" in item) {
                 if ("url" in item["attributes"]) {
-                    document.getElementById("myContainer").src = item["attributes"]["url"];
+                    document.getElementById("myContainer").src = item["attributes"]["url"] + "?patientCaseId=" + patientCase.id;
                 }
             }
         }
