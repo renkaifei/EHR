@@ -5,6 +5,7 @@ var patient;
 var patientCase;
 
 var $lblPatientName;
+var $lblMRN;
 var $lblAge;
 var $lblAllergies;
 var $leftSideMenu;
@@ -16,6 +17,7 @@ $(function () {
 
 function initializeComponent() {
     $lblPatientName = $("#lblPatientName");
+    $lblMRN = $("#lblMRN");
     $lblAge = $("#lblAge");
     $lblAllergies = $("#lblAllergies");
     $leftSideMenu = $("#leftSideMenu");
@@ -88,13 +90,16 @@ function pageLoad() {
     //get patientCaseInfo;
     patientCaseService.getOneById(patientCaseId, function (data) {
         patientCase = data;
-        patientService.getOneById(patientCase.patientId, function (data) {
-            patient = data;
-            $lblPatientName.text(patient.getFullName());
-            $lblAge.text(patient.age);
-        }, function (message) {
-            $.messager.alert('error', message, "error");
-        });
+        patientService.getOneById(patientCase.patientId)
+            .then(function (data) {
+                patient = data;
+                $lblPatientName.text(patient.getFullName());
+                $lblMRN.text(patient.mrn);
+                $lblAge.text(patient.age);
+                $lblAllergies.text(patient.getAllergies());
+            }).catch(function (message) {
+                $.messager.alert('error', message, "error");
+            });
     }, function (message) {
         $.messager.alert('error', message, "error");
     });

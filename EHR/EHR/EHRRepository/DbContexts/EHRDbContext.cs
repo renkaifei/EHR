@@ -32,11 +32,17 @@ namespace EHRRepository.DbContexts
             new PathologyTumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<PathologyTumorMarker>());
             new RadiologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Radiology>());
             new CTImageEntityTypeConfiguration().Configure(modelBuilder.Entity<CTImage>());
+            new AllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<Allergy>());
+            new PatientAllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientAllergy>());
         }
 
         public DbSet<User> Users { get; set; }
 
         public DbSet<Patient> Patients { get; set; }
+
+        public DbSet<Allergy> Allergies { get; set; }
+
+        public DbSet<PatientAllergy> PatientAllergies { get; set; }
 
         public DbSet<Role> Roles { get; set; }
 

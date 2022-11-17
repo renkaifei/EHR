@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace EHRDomain
 {
-    public class Patient:User
+    public class Allergy
     {
-        public string MRN { get; set; }
+        public int Id { get; set; }
 
-        public List<PatientCase> PatientCases { get; set; }
+        public string Name { get; set; }
 
         public List<PatientAllergy> PatientAllergies { get; set; }
     }

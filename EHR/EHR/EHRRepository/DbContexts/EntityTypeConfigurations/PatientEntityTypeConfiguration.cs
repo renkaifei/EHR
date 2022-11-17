@@ -17,9 +17,16 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
         {
             builder.ToTable("Patient");
             builder.Property(b => b.Id).HasColumnType("integer");
+            builder.Property(b => b.MRN).HasColumnType("varchar(128)");
 
             builder.HasMany(b => b.PatientCases)
-                .WithOne(b => b.Patient).HasForeignKey(b => b.PatientId);
+                .WithOne(b => b.Patient)
+                .HasForeignKey(b => b.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(b => b.PatientAllergies)
+                .WithOne(b => b.Patient)
+                .HasForeignKey(b => b.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

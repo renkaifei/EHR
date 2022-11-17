@@ -57,6 +57,7 @@ namespace EHR
             services.AddScoped<UserApp>();
             services.AddScoped<PatientRepository>();
             services.AddScoped<PatientApp>();
+            services.AddScoped<AllergyRepository>();
             services.AddScoped<PatientCaseRepository>();
             services.AddScoped<PatientCaseApp>();
             services.AddScoped<PathologyRepository>();
