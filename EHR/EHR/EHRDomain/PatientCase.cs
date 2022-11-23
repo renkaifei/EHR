@@ -12,7 +12,19 @@ namespace EHRDomain
 
         public int PatientId { get; set; }
 
-        public Patient Patient { get; set; } 
+        public int AttendingId { get; set; }
+
+        public int ConsultantId { get; set; }
+
+        public DateTime? AdmittedDate { get; set; }
+
+        public string Location { get; set; }
+
+        public Patient Patient { get; set; }
+
+        public Doctor Attending { get; set; }
+
+        public Doctor Consultant { get; set; }
 
         public Pathology Pathology { get; set; }
 

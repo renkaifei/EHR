@@ -20,6 +20,9 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.Property(b => b.MiddleName).HasColumnType("varchar(128)");
             builder.Property(b => b.LastName).HasColumnType("varchar(128)");
             builder.Property(b => b.Age).HasColumnType("integer");
+            builder.Property(b => b.Gender).HasColumnType("varchar(10)");
+            builder.Property(b => b.DOB).HasColumnType("datetime");
+            builder.Property(b => b.Medicare).HasColumnType("varchar(50)");
             builder.Property(b => b.Address).HasColumnType("varchar(512)");
             builder.Property(b => b.LoginName).HasColumnType("varchar(128)");
             builder.Property(b => b.Password).HasColumnType("varchar(128)");

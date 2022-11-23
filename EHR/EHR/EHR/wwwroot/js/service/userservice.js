@@ -20,6 +20,7 @@ UserService.prototype.GetOneById = function (userId,successCallback,errorCallbac
                 user.lastName = resp.data.lastName;
                 user.address = resp.data.address;
                 user.loginName = resp.data.loginName;
+                user.dob = resp.data.dob;
                 successCallback(user);
             }
         },

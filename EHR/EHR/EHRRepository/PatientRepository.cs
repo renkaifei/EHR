@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.EntityFrameworkCore;
+
 using EHRRepository.DbContexts;
 using EHRDomain;
 
@@ -12,7 +14,7 @@ namespace EHRRepository
     public class PatientRepository
     {
         private EHRDbContext m_dbContext;
-
+         
         public PatientRepository(EHRDbContext dbContext)
         {
             m_dbContext = dbContext;

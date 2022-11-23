@@ -4,6 +4,9 @@
     this.middleName = "";
     this.lastName = "";
     this.age = 0;
+    this.gender = "";
+    this.dob = null;
+    this.medicare = null;
     this.address = "";
     this.loginName = "";
 }

@@ -16,6 +16,10 @@ PatientCaseService.prototype.getOneById = function (id,successCallback,errorCall
                 var patientCase = new PatientCase();
                 patientCase.id = resp.data.id;
                 patientCase.patientId = resp.data.patientId;
+                patientCase.admittedDate = resp.data.admittedDate;
+                patientCase.attendingId = resp.data.attendingId;
+                patientCase.consultantId = resp.data.consultantId;
+                patientCase.location = resp.data.location;
                 successCallback(patientCase);
             }
         },

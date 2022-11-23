@@ -24,6 +24,7 @@ namespace EHRApp
         {
             User user = await m_userRepository.GetOne(userId).AsNoTracking()
                 .FirstOrDefaultAsync().ConfigureAwait(false);
+            user.Password = "";
             return user;
         }
     }

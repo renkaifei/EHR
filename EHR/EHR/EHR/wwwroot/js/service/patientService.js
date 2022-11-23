@@ -25,6 +25,9 @@ PatientService.prototype.getOneById = function (id) {
                 patient.age = resp.data.age;
                 patient.loginName = resp.data.loginName;
                 patient.address = resp.data.address;
+                patient.medicare = resp.data.medicare;
+                patient.dob = resp.data.dob;
+                patient.gender = resp.data.gender;
                 if (resp.data.patientAllergies != null) {
                     resp.data.patientAllergies.forEach(function (item) {
                         var x = new PatientAllergy();

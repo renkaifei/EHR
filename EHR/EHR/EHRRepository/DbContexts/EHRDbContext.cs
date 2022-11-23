@@ -23,6 +23,7 @@ namespace EHRRepository.DbContexts
         {
             new UserEntityTypeConfiguration().Configure(modelBuilder.Entity<User>());
             new PatientEntityTypeConfiguration().Configure(modelBuilder.Entity<Patient>());
+            new DoctorEnityTypeConfiguration().Configure(modelBuilder.Entity<Doctor>());
             new DepartmentEntityTypeConfiguration().Configure(modelBuilder.Entity<Department>());
             new RoleEntityTypeConfiguration().Configure(modelBuilder.Entity<Role>());
             new UserRoleEntityTypeConfiguration().Configure(modelBuilder.Entity<UserRole>());
@@ -34,9 +35,12 @@ namespace EHRRepository.DbContexts
             new CTImageEntityTypeConfiguration().Configure(modelBuilder.Entity<CTImage>());
             new AllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<Allergy>());
             new PatientAllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientAllergy>());
+            
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Doctor> Doctors { get; set; }
 
         public DbSet<Patient> Patients { get; set; }
 

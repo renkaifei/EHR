@@ -1,11 +1,24 @@
-﻿<div data-options="region:'north',split:false,collapsible:true,title:'patient information'" style="height:65px">
+﻿<div data-options="region:'north',split:false" style="height:30px">
     <div>
-        <table>
+        <table id="tablePatientInfo">
             <tr>
                 <td style="width:200px">Patient:<label id="lblPatientName"></label></td>
                 <td style="width:200px">Age:<label id="lblAge"></label></td>
                 <td style="width:200px">MRN:<label id="lblMRN"></label></td>
-                <td style="width:200px">Allergies:<label id="lblAllergies"></label></td>
+                <td style="width:400px">Allergies:<label id="lblAllergies"></label></td>
+                <td><label id="toggerPatientInfo" class="spinner-arrow-down" style="width: 18px; height: 10px;"></label></td>
+            </tr>
+            <tr>
+                <td>Attending:<label id="lblAttending"></label></td>
+                <td>DOB:<label id="lblDOB"></label></td>
+                <td>Medicate#:<label id="lblMedicare"></label></td>
+                <td>Address:<label id="lblAddress"></label></td>
+            </tr>
+            <tr>
+                <td>Consultant:<label id="lblConsultant"></label></td>
+                <td>Sex:<label id="lblGender"></label></td>
+                <td>Attmitted:<label id="lblAdmitted"></label></td>
+                <td>Location:<label id="lblLocation"></label></td>
             </tr>
         </table>
     </div>
@@ -20,11 +33,13 @@
 @section Scripts{
     <script src="~/js/domain/user.js"></script>
     <script src="~/js/domain/patient.js"></script>
+    <script src="~/js/domain/doctor.js"></script>
     <script src="~/js/domain/allergy.js"></script>
     <script src="~/js/domain/patientAllergy.js"></script>
     <script src="~/js/domain/patientCase.js"></script>
     <script src="~/js/service/patientService.js"></script>
     <script src="~/js/service/patientCaseService.js"></script>
+    <script src="~/js/service/doctorService.js"></script>
     <script src="~/js/patientcase/index.js"></script>
 }
 

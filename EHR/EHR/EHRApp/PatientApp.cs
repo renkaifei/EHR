@@ -32,6 +32,7 @@ namespace EHRApp
             {
                 item.Allergy = allergies.Where(subItem => item.AllergyId == subItem.Id).FirstOrDefault();
             });
+            patient.Password = "";
             return patient;
         }
     }

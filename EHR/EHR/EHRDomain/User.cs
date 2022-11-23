@@ -18,7 +18,13 @@ namespace EHRDomain
 
         public int Age { get; set; }
 
-        public string Address { get; set; }
+        public string Gender { get; set; }
+
+        public DateTime DOB { get; set; }
+
+        public string? Medicare { get; set; }
+
+        public string? Address { get; set; }
 
         public string LoginName { get; set; }
 
