@@ -22,6 +22,10 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.Property(b => b.ConsultantId).HasColumnType("integer");
             builder.Property(b => b.AdmittedDate).HasColumnType("datetime");
             builder.Property(b => b.Location).HasColumnType("varchar(512)");
+            builder.Property(b => b.ChiefComplaitHistoriesId).HasColumnType("integer").IsRequired(false);
+            builder.Property(b => b.PathologyReportId).HasColumnType("integer");
+            builder.Property(b => b.PathologySharedNotesId).HasColumnType("integer");
+            
             builder.HasKey(b => b.Id);
             builder.HasOne(b => b.Attending)
                 .WithMany()
@@ -29,12 +33,21 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.HasOne(b => b.Consultant)
                 .WithMany()
                 .HasForeignKey(b => b.ConsultantId);
-            builder.HasOne(b => b.Pathology)
-                .WithOne(b => b.PatientCase)
-                .HasForeignKey<Pathology>(b => b.PatientCaseId);
             builder.HasOne(b => b.Radiology)
+                .WithOne()
+                .HasForeignKey<PatientCase>(b => b.RadiologyId);
+            builder.HasOne(b => b.ChiefComplaintHistories)
+                .WithOne().HasForeignKey<PatientCase>(b => b.ChiefComplaitHistoriesId);
+            builder.HasOne(b => b.PathologyReport)
+                .WithOne()
+                .HasForeignKey<PatientCase>(b => b.PathologyReportId);
+            builder.HasOne(b => b.PathologySharedNotes)
+                .WithOne()
+                .HasForeignKey<PatientCase>(b => b.PathologySharedNotesId);
+            builder.HasMany(b => b.PatientCaseTumorMarkers)
                 .WithOne(b => b.PatientCase)
-                .HasForeignKey<Radiology>(b => b.PatientCaseId);
+                .HasForeignKey(b => b.PatientCaseId);
+
         }
     }
 }

@@ -11,9 +11,9 @@ using EHRDomain;
 
 namespace EHRApp
 {
-    public class PatientCaseApp
+    public sealed class PatientCaseApp
     {
-        private PatientCaseRepository m_patientCaseRepository;
+        private readonly PatientCaseRepository m_patientCaseRepository;
 
         public PatientCaseApp(PatientCaseRepository patientCaseRepository)
         {

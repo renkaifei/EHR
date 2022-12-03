@@ -13,9 +13,9 @@ using EHRUtil;
 namespace EHR.Apis
 {
     [ApiController]
-    public class PatientCaseController : ControllerBase
+    public sealed class PatientCaseController : ControllerBase
     {
-        private PatientCaseApp m_patientCaseApp;
+        private readonly PatientCaseApp m_patientCaseApp;
 
         public PatientCaseController(PatientCaseApp patientCaseApp)
         {
@@ -23,7 +23,7 @@ namespace EHR.Apis
         }
 
         [HttpPost]
-        [Route("api/patientcase/getonebyid")]
+        [Route("api/patientcase/getOneById")]
         public async Task<OutputBaseViewModel> GetOneById([FromForm]int id)
         {
             ResultViewModel<PatientCase> result = new ResultViewModel<PatientCase>();
