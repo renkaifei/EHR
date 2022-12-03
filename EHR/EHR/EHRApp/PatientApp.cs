@@ -27,11 +27,14 @@ namespace EHRApp
             IQueryable<Patient> query = m_patientRepository.GetOne(patientId);
             Patient patient = await query.FirstOrDefaultAsync().ConfigureAwait(false);
             await query.Include(item => item.PatientAllergies).SelectMany(item => item.PatientAllergies).LoadAsync();
-            List<Allergy> allergies = await m_allergyRepository.GetAll().ToListAsync().ConfigureAwait(false);
-            patient.PatientAllergies.ForEach(item =>
+            if (patient.PatientAllergies != null)
             {
-                item.Allergy = allergies.Where(subItem => item.AllergyId == subItem.Id).FirstOrDefault();
-            });
+                List<Allergy> allergies = await m_allergyRepository.GetAll().ToListAsync().ConfigureAwait(false);
+                patient.PatientAllergies.ForEach(item =>
+                {
+                    item.Allergy = allergies.Where(subItem => item.AllergyId == subItem.Id).FirstOrDefault();
+                });
+            }
             patient.Password = "";
             return patient;
         }

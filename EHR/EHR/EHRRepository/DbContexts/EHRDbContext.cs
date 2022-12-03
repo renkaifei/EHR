@@ -28,9 +28,11 @@ namespace EHRRepository.DbContexts
             new RoleEntityTypeConfiguration().Configure(modelBuilder.Entity<Role>());
             new UserRoleEntityTypeConfiguration().Configure(modelBuilder.Entity<UserRole>());
             new PatientCaseEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientCase>());
+            new PathologyReportEntityTypeConfiguration().Configure(modelBuilder.Entity<PathologyReport>());
+            new PathologySharedNotesEntityTypeConfiguration().Configure(modelBuilder.Entity<PathologySharedNotes>());
+            new ChiefComplaintHistoriesEntityTypeConfiguration().Configure(modelBuilder.Entity<ChiefComplaintHistories>());
             new TumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<TumorMarker>());
-            new PathologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Pathology>());
-            new PathologyTumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<PathologyTumorMarker>());
+            new PatientCaseTumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientCaseTumorMarker>());
             new RadiologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Radiology>());
             new CTImageEntityTypeConfiguration().Configure(modelBuilder.Entity<CTImage>());
             new AllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<Allergy>());
@@ -54,11 +56,15 @@ namespace EHRRepository.DbContexts
 
         public DbSet<PatientCase> PatientCases { get; set; }
 
+        public DbSet<PathologyReport> PathologyReports { get; set; }
+
+        public DbSet<PathologySharedNotes> PathologySharedNotes { get; set; }
+
+        public DbSet<ChiefComplaintHistories> ChiefComplaintHistorieses { get; set; }
+
         public DbSet<TumorMarker> TumorMarkers { get; set; }
 
-        public DbSet<Pathology> Pathologys { get; set; }
-
-        public DbSet<PathologyTumorMarker> PathologyTumorMarkers { get; set; }
+        public DbSet<PatientCaseTumorMarker> PathologyTumorMarkers { get; set; }
 
         public DbSet<Radiology> Radiologys { get; set; }
 

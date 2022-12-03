@@ -40,24 +40,6 @@ namespace EHR.Apis
         }
 
         [HttpPost]
-        [Route("api/pathology/getOneByPatientCaseId")]
-        public async Task<OutputBaseViewModel> GetOneByPatientCaseId([FromForm]int patientCaseId)
-        {
-            ResultViewModel<Pathology> result = new ResultViewModel<Pathology>();
-            try
-            {
-                result.Data = await m_pathologyApp.GetOneByPatientCaseIdAsync(patientCaseId)
-                    .ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                result.Status = 100102;
-                result.Message = ex.GetMessage();
-            }
-            return result;
-        }
-
-        [HttpPost]
         [Route("api/pathology/updateClinicalNotes")]
         public async Task<OutputBaseViewModel> UpdateClinicalNotesAsync([FromForm]int id,[FromForm] string clinicalNotes)
         {

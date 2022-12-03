@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PathologyApp.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EHRDomain\EHRDomain.csproj" />
     <ProjectReference Include="..\EHRRepository\EHRRepository.csproj" />
   </ItemGroup>

@@ -26,12 +26,6 @@ namespace EHRRepository
             return query;
         }
 
-        public IQueryable<Pathology> GetOneByPatientCaseId(int patientCaseId)
-        {
-            IQueryable<Pathology> query = m_dbContext.Pathologys.Where(item => item.PatientCaseId == patientCaseId);
-            return query;
-        }
-
         public async Task SaveChangesAsync()
         {
             await m_dbContext.SaveChangesAsync();

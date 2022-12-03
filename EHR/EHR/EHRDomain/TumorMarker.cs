@@ -24,6 +24,6 @@ namespace EHRDomain
 
         public DateTime UpdateTime { get; set; }
 
-        public List<PathologyTumorMarker> PathologyTumorMarkers { get; set; }
+        public List<PatientCaseTumorMarker> PathologyTumorMarkers { get; set; }
     }
 }

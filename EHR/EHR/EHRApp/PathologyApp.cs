@@ -27,14 +27,6 @@ namespace EHRApp
             return await queryPathology.AsNoTracking().FirstOrDefaultAsync().ConfigureAwait(false);
         }
 
-        public async Task<Pathology> GetOneByPatientCaseIdAsync(int patientCaseId)
-        {
-            IQueryable<Pathology> queryPathology = m_pathologyRepository.GetOneByPatientCaseId(patientCaseId);
-            queryPathology = queryPathology.Include(item => item.PathologyTumorMarkers);
-            Pathology pathology = await queryPathology.AsNoTracking().FirstOrDefaultAsync().ConfigureAwait(false);
-            return pathology;
-        }
-
         public async Task<Pathology> UpdateClinicalNotesAsync(int pathologyId,string clinicalNotes)
         {
             IQueryable<Pathology> queryPathology = m_pathologyRepository.GetOneById(pathologyId);
