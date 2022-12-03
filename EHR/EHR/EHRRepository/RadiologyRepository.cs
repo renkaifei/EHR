@@ -18,13 +18,6 @@ namespace EHRRepository
             m_dbContext = dbContext;
         }
 
-        public IQueryable<Radiology> GetOneByPatientCaseId(int patientCaseId)
-        {
-            IQueryable<Radiology> query = m_dbContext.Radiologys;
-            if (patientCaseId != 0) query = query.Where(item => item.PatientCaseId == patientCaseId);
-            return query;
-        }
-
         public IQueryable<Radiology> GetOneById(int id) {
             IQueryable<Radiology> query = m_dbContext.Radiologys;
             if (id != 0) query = query.Where(item => item.Id == id);

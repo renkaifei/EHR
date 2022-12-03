@@ -24,12 +24,12 @@ namespace EHR.Apis
 
         [HttpPost]
         [Route("api/radiology/getonebypatientcaseid")]
-        public async Task<OutputBaseViewModel> GetOneByPatientCaseIdAsync([FromForm]int patientCaseId)
+        public async Task<OutputBaseViewModel> GetOneByIdAsync([FromForm]int id)
         {
             ResultViewModel<Radiology> result = new ResultViewModel<Radiology>();
             try
             {
-                result.Data = await m_radiologyApp.GetOneByPatientCaseIdAsync(patientCaseId);
+                result.Data = await m_radiologyApp.GetOneByIdAsync(id);
             }
             catch (Exception ex)
             {

@@ -14,10 +14,6 @@ namespace EHRDomain
 
         public string SharedNotes { get; set; }
 
-        public int PatientCaseId { get; set; }
-
-        public PatientCase PatientCase { get; set; }
-
         public List<CTImage> CTImages { get; set; }
     }
 }

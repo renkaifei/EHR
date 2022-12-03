@@ -20,11 +20,10 @@ namespace EHRApp
             m_radiologyRepository = radiologyRepository;
         }
 
-        public async Task<Radiology> GetOneByPatientCaseIdAsync(int patientCaseId)
+        public async Task<Radiology> GetOneByIdAsync(int id)
         {
-            IQueryable<Radiology> queryRadiology = m_radiologyRepository.GetOneByPatientCaseId(patientCaseId);
-            await queryRadiology.Include(item => item.CTImages).LoadAsync();
-            Radiology radiology = await queryRadiology.FirstOrDefaultAsync();
+            Radiology radiology = await m_radiologyRepository.GetOneById(id).AsNoTracking()
+                .FirstOrDefaultAsync().ConfigureAwait(false);
             return radiology;
         }
 
