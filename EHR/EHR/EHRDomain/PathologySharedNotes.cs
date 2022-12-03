@@ -12,6 +12,8 @@ namespace EHRDomain
 
         public string SharedNotes { get; set; }
 
+        public int PatientCaseId { get; set; }
+
         public DateTime CreateTime { get; set; }
 
         public DateTime UpdateTime { get; set; }

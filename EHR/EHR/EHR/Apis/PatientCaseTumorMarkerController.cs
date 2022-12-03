@@ -26,7 +26,7 @@ namespace EHR.Apis
 
         [HttpPost]
         [Route("api/patientCaseTumorMarker/getListByPatientCaseId")]
-        public async Task<OutputBaseViewModel> GetListByPatientCaseId(int patientCaseId)
+        public async Task<OutputBaseViewModel> GetListByPatientCaseId([FromForm]int patientCaseId)
         {
             ResultsViewModel<PatientCaseTumorMarker> result = new ResultsViewModel<PatientCaseTumorMarker>();
             try

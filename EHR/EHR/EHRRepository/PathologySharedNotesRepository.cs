@@ -27,5 +27,14 @@ namespace EHRRepository
             return query;
         }
 
+        public void Add(PathologySharedNotes pathologySharedNotes)
+        {
+            m_dbContext.PathologySharedNotes.Add(pathologySharedNotes);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await m_dbContext.SaveChangesAsync().ConfigureAwait(false);
+        }
     }
 }

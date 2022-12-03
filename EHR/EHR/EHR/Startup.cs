@@ -19,6 +19,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 
+using EHR.Hubs;
+
 namespace EHR
 {
     public class Startup
@@ -42,6 +44,7 @@ namespace EHR
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd";
             });
+            services.AddSignalR();
             services.AddSwaggerGen();
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -62,13 +65,18 @@ namespace EHR
             services.AddScoped<AllergyRepository>();
             services.AddScoped<PatientCaseRepository>();
             services.AddScoped<PatientCaseApp>();
-            services.AddScoped<PathologyRepository>();
-            services.AddScoped<PathologyApp>();
-            services.AddScoped<PathologyTumorMarkerRepository>();
             services.AddScoped<TumorMarkerRepository>();
             services.AddScoped<TumorMarkerApp>();
+            services.AddScoped<PatientCaseTumorMarkerRepository>();
+            services.AddScoped<PatientCaseTumorMarkerApp>();
+            services.AddScoped<PathologyReportRepository>();
+            services.AddScoped<PathologyReportApp>();
+            services.AddScoped<PathologySharedNotesRepository>();
+            services.AddScoped<PathologySharedNotesApp>();
             services.AddScoped<RadiologyRepository>();
             services.AddScoped<RadiologyApp>();
+            services.AddScoped<ChiefComplaintHistoriesRepository>();
+            services.AddScoped<ChiefComplaintHistoriesApp>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,6 +115,7 @@ namespace EHR
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=PatientCase}/{action=Index}/{id?}");
+                endpoints.MapHub<PatientCaseHub>("/patientCaseHub");
             });
         }
     }
