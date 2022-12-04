@@ -2,16 +2,19 @@
 
 }
 
-PatientCaseService.prototype.getOneById = function (id,successCallback,errorCallback) {
-    $.ajax({
-        url: "/api/patientcase/getOneById",
-        type: "post",
-        dataType: "json",
-        contentType: "application/x-www-form-urlencoded",
-        data: { id: id },
-        success: function (resp) {
+PatientCaseService.prototype.getOneById = function (id) {
+    return fetch("/api/patientcase/getOneById", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: "id=" + id
+    }).then(function (resp) {
+        return resp.json();
+    }).then(function (resp) {
+        return new Promise(function (resolve, reject) {
             if (resp.status != 100000) {
-                errorCallback(resp.message);
+                reject(resp.message);
             } else {
                 var patientCase = new PatientCase();
                 patientCase.id = resp.data.id;
@@ -20,11 +23,12 @@ PatientCaseService.prototype.getOneById = function (id,successCallback,errorCall
                 patientCase.attendingId = resp.data.attendingId;
                 patientCase.consultantId = resp.data.consultantId;
                 patientCase.location = resp.data.location;
-                successCallback(patientCase);
+                patientCase.chiefComplaintHistoriesId = resp.data.chiefComplaintHistoriesId;
+                patientCase.pathologyReportId = resp.data.pathologyReportId;
+                patientCase.pathologySharedNotesId = resp.data.pathologySharedNotesId;
+                patientCase.radiologyId = resp.data.radiologyId;
+                resolve(patientCase);
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(errorThrown);
-        }
+        });
     });
 }

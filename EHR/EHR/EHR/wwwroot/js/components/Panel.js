@@ -55,3 +55,7 @@ Panel.prototype.close = function () {
 Panel.prototype.open = function () {
     this.getJqueryObj().panel("open");
 }
+
+Panel.prototype.maximize = function () {
+    this.getJqueryObj().panel("maximize");
+}

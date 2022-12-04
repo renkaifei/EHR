@@ -62,18 +62,34 @@ function initializeComponent() {
         width: 295,
         border: false,
         data: [{
-            text: "Chief Complaint and Histories"
+            text: "Chief Complaint and Histories",
+            status: "open",
+            children: [{
+                id: "menu_chiefComplaintHistories",
+                text: "Chief Complaint and Histories",
+                iconCls: "",
+                attributes: {
+                    "tag": "chiefComplaintHistories",
+                    "url": "/chiefComplaintHistories/Index"
+                }
+            }]
         }, {
             text: "Labortory Test Results",
             status: "open",
             children: [{
+                id: "menu_pathology",
                 text: "Pathology",
+                iconCls: "",
                 attributes: {
+                    "tag": "pathology",
                     "url": "/Pathology/Index"
                 }
             }, {
+                id: "menu_radiology",
                 text: "Radiology",
+                iconCls: "",
                 attributes: {
+                    "tag": "radiology",
                     "url": "/Radiology/Index"
                 }
             }]
@@ -108,11 +124,34 @@ function initializeComponent() {
         }],
         onSelect: function (item) {
             if ("attributes" in item) {
-                if ("url" in item["attributes"]) {
+                if ("url" in item["attributes"] && "tag" in item["attributes"]) {
                     document.getElementById("myContainer").src = item["attributes"]["url"] + "?patientCaseId=" + patientCase.id;
                 }
             }
+        },
+        formatter: function (node) {
+            return node.text;
         }
+    });
+
+    connection.on("ReceivePathologyMessage", function (pathologyId) {
+        patientCase.pathologyId = pathologyId;
+        update_menu_pathology();
+    });
+
+    connection.on("ReceiveRadiologyMessage", function (radiologyId) {
+        patientCase.radiologyId = radiologyId;
+        update_menu_radiology();
+    });
+
+    connection.on("ReceiveChiefComplaintHistoriesMessage", function (chiefComplaintHistoriesId) {
+        patientCase.chiefComplaintHistoriesId = chiefComplaintHistoriesId;
+        update_menu_chiefComplaintHistories();
+    });
+    connection.start().then(function () {
+        
+    }).catch(function (err) {
+        return console.error(err.toString());
     });
 }
 
@@ -127,14 +166,17 @@ function pageLoad() {
     //initialize test data;
     var patientCaseId = 1;
 
-    
-
     //get patientCaseInfo;
-    patientCaseService.getOneById(patientCaseId, function (data) {
+    patientCaseService.getOneById(patientCaseId).then(function (data) {
         patientCase = data;
         $lblAdmitted.text(patientCase.admittedDate);
         $lblLocation.text(patientCase.location);
-        patientService.getOneById(patientCase.patientId)
+
+        update_menu_chiefComplaintHistories();
+        update_menu_pathology();
+        update_menu_radiology();
+    }).then(function () {
+        return patientService.getOneById(patientCase.patientId)
             .then(function (data) {
                 patient = data;
                 $lblPatientName.text(patient.getFullName());
@@ -145,24 +187,20 @@ function pageLoad() {
                 $lblMedicare.text(patient.medicare);
                 $lblAddress.text(patient.address);
                 $lblGender.text(patient.gender);
-               
-            }).catch(function (message) {
-                $.messager.alert('error', message, "error");
             });
-        doctorService.getOneById(patientCase.attendingId)
+    }).then(function () {
+        return doctorService.getOneById(patientCase.attendingId)
             .then(function (data) {
                 attendingDoctor = data;
                 $lblAttending.text(attendingDoctor.getFullName());
-            }).catch(function (message) {
-                $.messager.alert('error', message, "error");
             });
-        doctorService.getOneById(patientCase.consultantId)
+    }).then(function () {
+        return doctorService.getOneById(patientCase.consultantId)
             .then(function (data) {
                 consultantDoctor = data;
                 $lblConsultant.text(consultantDoctor.getFullName());
-            })
-
-    }, function (message) {
+            });
+    }).catch(function (message) {
         $.messager.alert('error', message, "error");
     });
 }
@@ -174,5 +212,29 @@ function hidePatientDetailInfo() {
 
 function showPatientDetailInfo() {
     $tablePatientInfo.find("tr:eq(0)").siblings().show();
+}
+
+function update_menu_chiefComplaintHistories() {
+    var menu_chiefComplaintHistories_node = $(".sidemenu-tree").eq(0).tree("find", "menu_chiefComplaintHistories");
+    $(".sidemenu-tree").eq(0).tree("update", {
+        target: menu_chiefComplaintHistories_node.target,
+        iconCls: patientCase.ChiefComplaitHistoriesId == null ? "icon-no" : ""
+    });
+}
+
+function update_menu_pathology() {
+    var menu_pathology_node = $(".sidemenu-tree").eq(1).tree("find", "menu_pathology");
+    $(".sidemenu-tree").eq(1).tree("update", {
+        target: menu_pathology_node.target,
+        iconCls: patientCase.pathologyId == null ? "icon-no" : ""
+    });
+}
+
+function update_menu_radiology() {
+    var menu_radiology_node = $(".sidemenu-tree").eq(1).tree("find", "menu_radiology");
+    $(".sidemenu-tree").eq(1).tree("update", {
+        target: menu_radiology_node.target,
+        iconCls: patientCase.radiologyId == null ? "icon-no" : ""
+    });
 }
 

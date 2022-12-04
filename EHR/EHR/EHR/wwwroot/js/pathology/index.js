@@ -8,8 +8,12 @@ var flowsheetGridPanel;
 var ceaGraphChartPanel;
 var reportPanel;
 var sharedNotesPanel;
-var pathologyService;
-var pathology;
+var patientCaseService;
+var patientCaseTumorMarkerService;
+var pathologyReportService;
+var pathologySharedNotesService;
+var pathologySharedNotes;
+var patientCaseId = 0;
 
 $(function () {
     initializeComponent();
@@ -174,17 +178,49 @@ function initializeComponent() {
 }
 
 function pageLoad() {
-    var pathologyId = 1;
-    pathologyService = new PathologyService();
-    pathologyService.getOneById(pathologyId).then(function (data) {
-        pathology = data;
-        caGraphChartPanel.build(pathology);
-        flowsheetGridPanel.build(pathology);
-        ceaGraphChartPanel.build(pathology);
-        reportPanel.build(pathology);
-        sharedNotesPanel.build(pathology);
-    });
+    patientCaseService = new PatientCaseService();
+    patientCaseTumorMarkerService = new PatientCaseTumorMarkerService();
+    pathologyReportService = new PathologyReportService();
+    pathologySharedNotesService = new PathologySharedNotesService();
 
+    patientCaseId = getIframeQueryString("patientCaseId");
+    if (patientCaseId == null) patientCaseId = 0;
+        
+    patientCaseTumorMarkerService.getListByPatientCaseId(patientCaseId).then(function (data) {
+        var arrcaData = data.filter(function (item) {
+            return item.tumorMarker.name == "CA";
+        });
+        caGraphChartPanel.build(arrcaData);
+        flowsheetGridPanel.build(data);
+        var arrceaData = data.filter(function (item) {
+            return item.tumorMarker.name == "CEA";
+        });
+        ceaGraphChartPanel.build(arrceaData);
+    }).catch(function (message) {
+        $.messager.alert('error', message, "error");
+    });
+    
+    patientCaseService.getOneById(patientCaseId)
+        .then(function (data) {
+            var pathologyReportId = data.pathologyReportId || 0;
+            pathologyReportService.getOneById(pathologyReportId)
+                .then(function (data) {
+                    reportPanel.build(data);
+                }).catch(function (message) {
+                    $.messager.alert('error', message, "error");
+                });
+            var pathologySharedNotesId = data.pathologySharedNotesId || 0;
+            pathologySharedNotesService.getOneById(pathologySharedNotesId)
+                .then(function (data) {
+                    pathologySharedNotes = data;
+                    pathologySharedNotes.patientCaseId = patientCaseId;
+                    sharedNotesPanel.build(pathologySharedNotes);
+                }).catch(function (message) {
+                    $.messager.alert('error', message, "error");
+                });
+        }).catch(function (message) {
+            $.messager.alert('error', message, "error");
+        });
 }
 
 function closePanelExcept(panel) {
