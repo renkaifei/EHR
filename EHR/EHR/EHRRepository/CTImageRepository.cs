@@ -18,7 +18,7 @@ namespace EHRRepository
             this.m_dbContext = dbContext;
         }
 
-        public IQueryable<CTImage> GetListByRadiologyId(int patientCaseId)
+        public IQueryable<CTImage> GetListByPatientCaseId(int patientCaseId)
         {
             IQueryable<CTImage> query = m_dbContext.CTImages;
             query = query.Where(item => item.PatientCaseId == patientCaseId);

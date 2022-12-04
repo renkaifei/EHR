@@ -9,3 +9,4 @@
 9 病例模块SharedNotes异常编码 100801-100899
 10 radiologyReport 模块异常编码 100901-100999
 10 radiologySharedNotes模块异常编码 101001 - 101099
+11 CTImage模块异常编码 101101-101199
