@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="PathologyApp.cs" />
+    <Compile Remove="RadiologyApp.cs" />
   </ItemGroup>
 
   <ItemGroup>

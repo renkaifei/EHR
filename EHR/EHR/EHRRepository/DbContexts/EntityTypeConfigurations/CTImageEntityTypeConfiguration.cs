@@ -18,7 +18,7 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.ToTable("CTImage");
             builder.Property(b => b.Id).HasColumnType("integer");
             builder.Property(b => b.ImagePath).HasColumnType("varchar(1024)");
-            builder.Property(b => b.RadiologyId).HasColumnType("integer");
+            builder.Property(b => b.PatientCaseId).HasColumnType("integer");
 
             builder.HasKey(b => b.Id);
         }

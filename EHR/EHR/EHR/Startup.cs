@@ -73,8 +73,8 @@ namespace EHR
             services.AddScoped<PathologyReportApp>();
             services.AddScoped<PathologySharedNotesRepository>();
             services.AddScoped<PathologySharedNotesApp>();
-            services.AddScoped<RadiologyRepository>();
-            services.AddScoped<RadiologyApp>();
+            services.AddScoped<RadiologyReportRepository>();
+            services.AddScoped<RadiologySharedNotesRepository>();
             services.AddScoped<ChiefComplaintHistoriesRepository>();
             services.AddScoped<ChiefComplaintHistoriesApp>();
         }

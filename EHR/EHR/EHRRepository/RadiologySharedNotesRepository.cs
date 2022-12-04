@@ -4,32 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Microsoft.EntityFrameworkCore;
-
 using EHRRepository.DbContexts;
 using EHRDomain;
 
 namespace EHRRepository
 {
-    public sealed class PathologySharedNotesRepository
+    public sealed class RadiologySharedNotesRepository
     {
         private readonly EHRDbContext m_dbContext;
 
-        public PathologySharedNotesRepository(EHRDbContext dbContext)
+        public RadiologySharedNotesRepository(EHRDbContext dbContext)
         {
             m_dbContext = dbContext;
         }
 
-        public IQueryable<PathologySharedNotes> GetOneById(int id)
+        public IQueryable<RadiologySharedNotes> GetOneById(int id)
         {
-            IQueryable<PathologySharedNotes> query = m_dbContext.PathologySharedNoteses;
+            IQueryable<RadiologySharedNotes> query = m_dbContext.RadiologySharedNoteses;
             query = query.Where(item => item.Id == id);
             return query;
         }
 
-        public void Add(PathologySharedNotes pathologySharedNotes)
+        public void Add(RadiologySharedNotes radiologySharedNotes)
         {
-            m_dbContext.PathologySharedNoteses.Add(pathologySharedNotes);
+            m_dbContext.RadiologySharedNoteses.Add(radiologySharedNotes);
         }
 
         public async Task SaveChangesAsync()

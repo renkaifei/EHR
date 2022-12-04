@@ -6,7 +6,9 @@
 
   <ItemGroup>
     <Compile Remove="DbContexts\EntityTypeConfigurations\PathologyEntityTypeConfiguration.cs" />
+    <Compile Remove="DbContexts\EntityTypeConfigurations\RadiologyEntityTypeConfiguration.cs" />
     <Compile Remove="PathologyRepository.cs" />
+    <Compile Remove="RadiologyRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>

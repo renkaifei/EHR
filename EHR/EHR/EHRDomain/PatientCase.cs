@@ -22,13 +22,13 @@ namespace EHRDomain
 
         public int? ChiefComplaitHistoriesId { get; set; }
 
-        public int? PathologyId { get; set; }
-
         public int? PathologyReportId { get; set; }
 
         public int? PathologySharedNotesId { get; set; }
 
-        public int? RadiologyId { get; set; }
+        public int? RadiologyReportId { get; set; }
+
+        public int? RadiologySharedNotesId { get; set; }
 
         public DateTime CreateTime { get; set; }
 
@@ -44,9 +44,13 @@ namespace EHRDomain
 
         public PathologySharedNotes PathologySharedNotes { get; set; }
 
+        public RadiologyReport RadiologyReport { get; set; }
+
+        public RadiologySharedNotes RadiologySharedNotes { get; set; }
+
         public List<PatientCaseTumorMarker> PatientCaseTumorMarkers { get; set; }
 
-        public Radiology Radiology { get; set; }
+        public List<CTImage> CTImages { get; set; }
 
         public ChiefComplaintHistories ChiefComplaintHistories { get; set; }
     }

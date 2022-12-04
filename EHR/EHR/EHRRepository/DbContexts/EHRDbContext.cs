@@ -33,7 +33,8 @@ namespace EHRRepository.DbContexts
             new ChiefComplaintHistoriesEntityTypeConfiguration().Configure(modelBuilder.Entity<ChiefComplaintHistories>());
             new TumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<TumorMarker>());
             new PatientCaseTumorMarkerEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientCaseTumorMarker>());
-            new RadiologyEntityTypeConfiguration().Configure(modelBuilder.Entity<Radiology>());
+            new RadiologyReportEntityTypeConfiguration().Configure(modelBuilder.Entity<RadiologyReport>());
+            new RadiologySharedNotesEntityTypeConfiguration().Configure(modelBuilder.Entity<RadiologySharedNotes>());
             new CTImageEntityTypeConfiguration().Configure(modelBuilder.Entity<CTImage>());
             new AllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<Allergy>());
             new PatientAllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientAllergy>());
@@ -58,7 +59,7 @@ namespace EHRRepository.DbContexts
 
         public DbSet<PathologyReport> PathologyReports { get; set; }
 
-        public DbSet<PathologySharedNotes> PathologySharedNotes { get; set; }
+        public DbSet<PathologySharedNotes> PathologySharedNoteses { get; set; }
 
         public DbSet<ChiefComplaintHistories> ChiefComplaintHistorieses { get; set; }
 
@@ -66,7 +67,9 @@ namespace EHRRepository.DbContexts
 
         public DbSet<PatientCaseTumorMarker> PathologyTumorMarkers { get; set; }
 
-        public DbSet<Radiology> Radiologys { get; set; }
+        public DbSet<RadiologyReport> RadiologyReports { get; set; }
+
+        public DbSet<RadiologySharedNotes> RadiologySharedNoteses { get; set; }
 
         public DbSet<CTImage> CTImages { get; set; }
 

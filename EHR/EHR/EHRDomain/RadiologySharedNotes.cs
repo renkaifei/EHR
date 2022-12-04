@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace EHRDomain
 {
-    public class CTImage
+    public class RadiologySharedNotes
     {
         public int Id { get; set; }
 
-        public string ImagePath { get; set; }
+        public string SharedNotes { get; set; }
 
         public int PatientCaseId { get; set; }
 
-        public PatientCase PatientCase { get; set; }
+        public DateTime CreateTime { get; set; }
+
+        public DateTime UpdateTime { get; set; }
     }
 }
