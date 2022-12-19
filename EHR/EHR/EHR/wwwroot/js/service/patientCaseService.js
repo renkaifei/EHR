@@ -26,7 +26,8 @@ PatientCaseService.prototype.getOneById = function (id) {
                 patientCase.chiefComplaintHistoriesId = resp.data.chiefComplaintHistoriesId;
                 patientCase.pathologyReportId = resp.data.pathologyReportId;
                 patientCase.pathologySharedNotesId = resp.data.pathologySharedNotesId;
-                patientCase.radiologyId = resp.data.radiologyId;
+                patientCase.radiologyReportId = resp.data.radiologyReportId;
+                patientCase.radiologySharedNotesId = resp.data.radiologySharedNotesId;
                 resolve(patientCase);
             }
         });

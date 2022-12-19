@@ -18,10 +18,9 @@ ChiefComplaintHistoriesPanel.prototype.build = function (chiefComplaintHistories
         var data = CKEDITOR.instances.chiefComplaintHistoriesEditor.getData();
         chiefComplaintHistories.content = data;
         var chiefComplaintHistoriesService = new ChiefComplaintHistoriesService();
-        if (chiefComplaintHistories.id == 0) {
+        if (!chiefComplaintHistories.isExistsInDb()) {
             chiefComplaintHistoriesService.add(chiefComplaintHistories).then(function (data) {
                 chiefComplaintHistories.id = data.id;
-                chiefComplaintHistories.content = data.content;
                 $.messager.alert('info', "save successfully", "info");
             }).catch(function (message) {
                 $.messager.alert('error', message, "error");

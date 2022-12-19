@@ -9,24 +9,34 @@
 </div>
 
 @*<div style="width:1050px">
-    <div style="float:left">
-        <div id="pnlReport"></div>
-    </div>
-    <div style="float:left">
-        <div id="pnlSharedNotes"></div>
-    </div>
-</div>*@
+        <div style="float:left">
+            <div id="pnlReport"></div>
+        </div>
+        <div style="float:left">
+            <div id="pnlSharedNotes"></div>
+        </div>
+    </div>*@
 
 @section Scripts{
-    <script src="~/lib/ckeditor/ckeditor.js"></script>
     <script src="~/js/utils/Utils.js"></script>
+
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+
     <script src="~/js/components/Panel.js"></script>
     <script src="~/js/components/RadiologySharedNotesPanel.js"></script>
     <script src="~/js/components/radiologyReportPanel.js"></script>
+
     <script src="~/js/components/ctImagePanel.js"></script>
-    <script src="~/js/service/radiologyService.js"></script>
+
+    <script src="~/js/domain/patientCase.js"></script>
     <script src="~/js/domain/ctImage.js"></script>
-    <script src="~/js/domain/radiology.js"></script>
-    <script src="~/js/service/radiologyService.js"></script>
+    <script src="~/js/domain/radiologyReport.js"></script>
+    <script src="~/js/domain/radiologySharedNotes.js"></script>
+
+    <script src="~/js/service/patientCaseService.js"></script>
+    <script src="~/js/service/cTImageService.js"></script>
+    <script src="~/js/service/radiologyReportService.js"></script>
+    <script src="~/js/service/radiologySharedNotesService.js"></script>
+
     <script src="~/js/radiology/index.js"></script>
 }

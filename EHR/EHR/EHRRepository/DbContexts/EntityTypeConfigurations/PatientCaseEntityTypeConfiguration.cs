@@ -22,7 +22,7 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.Property(b => b.ConsultantId).HasColumnType("integer");
             builder.Property(b => b.AdmittedDate).HasColumnType("datetime");
             builder.Property(b => b.Location).HasColumnType("varchar(512)");
-            builder.Property(b => b.ChiefComplaitHistoriesId).HasColumnType("integer").IsRequired(false);
+            builder.Property(b => b.ChiefComplaintHistoriesId).HasColumnType("integer").IsRequired(false);
             builder.Property(b => b.PathologyReportId).HasColumnType("integer");
             builder.Property(b => b.PathologySharedNotesId).HasColumnType("integer");
             builder.Property(b => b.RadiologyReportId).HasColumnType("integer");
@@ -35,7 +35,7 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
                 .WithMany()
                 .HasForeignKey(b => b.ConsultantId);
             builder.HasOne(b => b.ChiefComplaintHistories)
-                .WithOne().HasForeignKey<PatientCase>(b => b.ChiefComplaitHistoriesId);
+                .WithOne().HasForeignKey<PatientCase>(b => b.ChiefComplaintHistoriesId);
             builder.HasOne(b => b.PathologyReport)
                 .WithOne()
                 .HasForeignKey<PatientCase>(b => b.PathologyReportId);

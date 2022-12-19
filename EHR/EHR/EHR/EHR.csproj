@@ -11,7 +11,9 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\js\domain\pathology.js" />
+    <Content Remove="wwwroot\js\domain\radiology.js" />
     <Content Remove="wwwroot\js\service\pathologyService.js" />
+    <Content Remove="wwwroot\js\service\radiologyService.js" />
   </ItemGroup>
 
   <ItemGroup>

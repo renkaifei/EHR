@@ -11,5 +11,11 @@ namespace EHRDomain
         public int Id { get; set; }
 
         public string? Content { get; set; }
+
+        public int PatientCaseId { get; set; }
+
+        public DateTime CreateTime { get; set; }
+
+        public DateTime UpdateTime { get; set; }
     }
 }

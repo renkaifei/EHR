@@ -13,10 +13,12 @@ namespace EHRApp
 {
     public sealed class ChiefComplaintHistoriesApp
     {
+        private readonly PatientCaseRepository m_patientCaseRepository;
         private readonly ChiefComplaintHistoriesRepository m_chiefComplaintHistoriesRepository;
 
-        public ChiefComplaintHistoriesApp(ChiefComplaintHistoriesRepository chiefComplaintHistoriesRepository)
+        public ChiefComplaintHistoriesApp(PatientCaseRepository patientCaseRepository,ChiefComplaintHistoriesRepository chiefComplaintHistoriesRepository)
         {
+            m_patientCaseRepository = patientCaseRepository;
             m_chiefComplaintHistoriesRepository = chiefComplaintHistoriesRepository;
         }
 
@@ -29,7 +31,8 @@ namespace EHRApp
         public async Task<ChiefComplaintHistories> AddAsync(ChiefComplaintHistories chiefComplaintHistories)
         {
             if (chiefComplaintHistories.Id != 0) throw new Exception("投诉和历史已经存在");
-            m_chiefComplaintHistoriesRepository.Add(chiefComplaintHistories);
+            PatientCase patientCase = await m_patientCaseRepository.GetOne(chiefComplaintHistories.PatientCaseId).FirstOrDefaultAsync();
+            patientCase.ChiefComplaintHistories = chiefComplaintHistories;
             await m_chiefComplaintHistoriesRepository.SaveChangesAsync();
             return chiefComplaintHistories;
         }

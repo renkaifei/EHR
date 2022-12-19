@@ -22,6 +22,8 @@ namespace EHR.Apis
             m_cTImageApp = cTImageApp;
         }
 
+        [HttpPost]
+        [Route("api/ctImage/getListByPatientCaseId")]
         public async Task<OutputBaseViewModel> GetListByPatientCaseId([FromForm] int patientCaseId)
         {
             ResultsViewModel<CTImage> result = new ResultsViewModel<CTImage>();

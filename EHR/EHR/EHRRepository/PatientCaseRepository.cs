@@ -21,7 +21,7 @@ namespace EHRRepository
         public IQueryable<PatientCase> GetOne(int id)
         {
             IQueryable<PatientCase> query = m_dbContext.PatientCases;
-            if (id != 0) query = query.Where(item => item.Id == id);
+            query = query.Where(item => item.Id == id);
             return query;
         }
     }

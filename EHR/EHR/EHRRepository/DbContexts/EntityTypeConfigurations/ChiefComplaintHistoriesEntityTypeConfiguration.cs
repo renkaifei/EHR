@@ -18,6 +18,10 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.ToTable("ChiefComplaintHistories");
             builder.Property(b => b.Id).HasColumnType("integer");
             builder.Property(b => b.Content).HasColumnType("varchar(4000)");
+            builder.Ignore(b => b.PatientCaseId);
+            builder.Property(b => b.CreateTime).HasColumnType("datetime");
+            builder.Property(b => b.UpdateTime).HasColumnType("datetime");
+
             builder.HasKey(b => b.Id);
         }
 

@@ -67,7 +67,7 @@ function initializeComponent() {
             children: [{
                 id: "menu_chiefComplaintHistories",
                 text: "Chief Complaint and Histories",
-                iconCls: "",
+                iconCls: "sidemenu-default-icon",
                 attributes: {
                     "tag": "chiefComplaintHistories",
                     "url": "/chiefComplaintHistories/Index"
@@ -79,7 +79,7 @@ function initializeComponent() {
             children: [{
                 id: "menu_pathology",
                 text: "Pathology",
-                iconCls: "",
+                iconCls: "sidemenu-default-icon",
                 attributes: {
                     "tag": "pathology",
                     "url": "/Pathology/Index"
@@ -87,7 +87,7 @@ function initializeComponent() {
             }, {
                 id: "menu_radiology",
                 text: "Radiology",
-                iconCls: "",
+                iconCls: "sidemenu-default-icon",
                 attributes: {
                     "tag": "radiology",
                     "url": "/Radiology/Index"
@@ -166,6 +166,10 @@ function pageLoad() {
     //initialize test data;
     var patientCaseId = 1;
 
+    connection.invoke("WatchPatientCase", patientCaseId).catch(function (err) {
+        return console.error(err.toString());
+    });
+
     //get patientCaseInfo;
     patientCaseService.getOneById(patientCaseId).then(function (data) {
         patientCase = data;
@@ -218,7 +222,7 @@ function update_menu_chiefComplaintHistories() {
     var menu_chiefComplaintHistories_node = $(".sidemenu-tree").eq(0).tree("find", "menu_chiefComplaintHistories");
     $(".sidemenu-tree").eq(0).tree("update", {
         target: menu_chiefComplaintHistories_node.target,
-        iconCls: patientCase.ChiefComplaitHistoriesId == null ? "icon-no" : ""
+        iconCls: patientCase.chiefComplaintHistoriesId == null ? "icon-no" : "sidemenu-default-icon"
     });
 }
 
@@ -226,7 +230,7 @@ function update_menu_pathology() {
     var menu_pathology_node = $(".sidemenu-tree").eq(1).tree("find", "menu_pathology");
     $(".sidemenu-tree").eq(1).tree("update", {
         target: menu_pathology_node.target,
-        iconCls: patientCase.pathologyId == null ? "icon-no" : ""
+        iconCls: patientCase.pathologySharedNotesId == null ? "icon-no" : "sidemenu-default-icon"
     });
 }
 
@@ -234,7 +238,9 @@ function update_menu_radiology() {
     var menu_radiology_node = $(".sidemenu-tree").eq(1).tree("find", "menu_radiology");
     $(".sidemenu-tree").eq(1).tree("update", {
         target: menu_radiology_node.target,
-        iconCls: patientCase.radiologyId == null ? "icon-no" : ""
+        iconCls: patientCase.radiologySharedNotesId == null ? "icon-no" : "sidemenu-default-icon"
     });
 }
+
+
 

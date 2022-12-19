@@ -20,7 +20,7 @@ namespace EHRDomain
 
         public string Location { get; set; }
 
-        public int? ChiefComplaitHistoriesId { get; set; }
+        public int? ChiefComplaintHistoriesId { get; set; }
 
         public int? PathologyReportId { get; set; }
 

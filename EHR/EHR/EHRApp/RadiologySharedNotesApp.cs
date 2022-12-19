@@ -13,10 +13,12 @@ namespace EHRApp
 {
     public sealed class RadiologySharedNotesApp
     {
+        private readonly PatientCaseRepository m_patientCaseRepository;
         private readonly RadiologySharedNotesRepository m_radiologySharedNotesRepository;
 
-        public RadiologySharedNotesApp(RadiologySharedNotesRepository radiologySharedNotesRepository)
+        public RadiologySharedNotesApp(PatientCaseRepository patientCaseRepository,RadiologySharedNotesRepository radiologySharedNotesRepository)
         {
+            m_patientCaseRepository = patientCaseRepository;
             m_radiologySharedNotesRepository = radiologySharedNotesRepository;
         }
 
@@ -24,13 +26,13 @@ namespace EHRApp
         {
             RadiologySharedNotes radiologySharedNotes = await m_radiologySharedNotesRepository.GetOneById(id)
                     .AsNoTracking().FirstOrDefaultAsync();
-            if (radiologySharedNotes == null) throw new ArgumentException("radiologySharedNotes not exists");
             return radiologySharedNotes;
         }
 
         public async Task<RadiologySharedNotes> AddAsync(RadiologySharedNotes radiologySharedNotes)
         {
-            m_radiologySharedNotesRepository.Add(radiologySharedNotes);
+            PatientCase patientCase = await m_patientCaseRepository.GetOne(radiologySharedNotes.PatientCaseId).FirstOrDefaultAsync();
+            patientCase.RadiologySharedNotes = radiologySharedNotes;
             await m_radiologySharedNotesRepository.SaveChangesAsync();
             return radiologySharedNotes;
         }

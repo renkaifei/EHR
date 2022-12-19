@@ -24,7 +24,6 @@ namespace EHRApp
         {
             RadiologyReport radiologyReport = await m_radiologyReportRepository.GetOne(id).AsNoTracking()
                 .FirstOrDefaultAsync().ConfigureAwait(false);
-            if (radiologyReport == null) throw new ArgumentException("radiology report not exists");
             return radiologyReport;
         }
 

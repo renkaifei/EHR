@@ -1,8 +1,11 @@
 ﻿var $btnShowChiefComplaintHistoriesPanel;
 var chiefComplaintHistoriesPanel;
-var chiefComplaintHistoriesId = 0;
+
+var patientCaseService;
 var chiefComplaintHistoriesService;
+
 var chiefComplaintHistories;
+var patientCaseId = 0;
 
 $(function () {
     initializeComponent();
@@ -42,15 +45,21 @@ function initializeComponent() {
 }
 
 function pageLoad() {
+    patientCaseService = new PatientCaseService();
     chiefComplaintHistoriesService = new ChiefComplaintHistoriesService();
-    var chiefComplaintHistoriesId = getQueryString("chiefComplaintHistoriesId");
-    if (chiefComplaintHistoriesId == null) chiefComplaintHistoriesId = 0;
-    chiefComplaintHistoriesService.getOneById(chiefComplaintHistoriesId)
-        .then(function (data) {
-            chiefComplaintHistories = data;
-            chiefComplaintHistoriesPanel.build(chiefComplaintHistories);
-            chiefComplaintHistoriesPanel.maximize();
-        });
+
+    patientCaseId = getIframeQueryString("patientCaseId");
+    if (patientCaseId == null || patientCaseId == "undefined") patientCaseId = 0;
+
+    patientCaseService.getOneById(patientCaseId).then(function (data) {
+        var chiefComplaintHistoriesId = data.chiefComplaintHistoriesId || 0;
+        return chiefComplaintHistoriesService.getOneById(chiefComplaintHistoriesId);
+    }).then(function (data) {
+        chiefComplaintHistories = data;
+        chiefComplaintHistories.patientCaseId = patientCaseId;
+        chiefComplaintHistoriesPanel.build(chiefComplaintHistories);
+        chiefComplaintHistoriesPanel.maximize();
+    });
 }
 
 function disableShowBtn() {

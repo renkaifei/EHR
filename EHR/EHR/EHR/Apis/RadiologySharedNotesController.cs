@@ -23,6 +23,8 @@ namespace EHR.Apis
             m_radiologySharedNotesApp = radiologySharedNotesApp;
         }
 
+        [HttpPost]
+        [Route("api/radiologySharedNotes/getOneById")]
         public async Task<OutputBaseViewModel> GetOneByIdAsync([FromForm] int id)
         {
             ResultViewModel<RadiologySharedNotes> result = new ResultViewModel<RadiologySharedNotes>();
@@ -40,7 +42,7 @@ namespace EHR.Apis
 
         [HttpPost]
         [Route("api/radiologySharedNotes/add")]
-        public async Task<OutputBaseViewModel> AddAsync([FromForm]RadiologySharedNotesDto radiologySharedNotesDto)
+        public async Task<OutputBaseViewModel> AddAsync([FromBody]RadiologySharedNotesDto radiologySharedNotesDto)
         {
             ResultViewModel<RadiologySharedNotes> result = new ResultViewModel<RadiologySharedNotes>();
             try
@@ -60,7 +62,7 @@ namespace EHR.Apis
 
         [HttpPost]
         [Route("api/radiologySharedNotes/update")]
-        public async Task<OutputBaseViewModel> UpdateAsync([FromForm] RadiologySharedNotesDto radiologySharedNotesDto)
+        public async Task<OutputBaseViewModel> UpdateAsync([FromBody] RadiologySharedNotesDto radiologySharedNotesDto)
         {
             ResultViewModel<RadiologySharedNotes> result = new ResultViewModel<RadiologySharedNotes>();
             try

@@ -1,13 +1,21 @@
-﻿var radiology;
-var arrBtnShowCTImage;
+﻿var arrBtnShowCTImage;
 var $btnShowReport;
 var $btnShowSharedNotes;
 var arrPnlCTImages;
 var pnlReport;
 var pnlSharedNotes;
-var radiologyService;
 var pnlReportId = "pnlReport"
 var $pnlContainer;
+
+var patientCaseService;
+var cTImageService;
+var radiologyReportService;
+var radiologySharedNotesService;
+
+var patientCaseId = 0;
+var arrCTImages = [];
+var radiologyReport;
+var radiologySharedNotes;
 
 
 
@@ -35,16 +43,35 @@ function initializeComponent() {
 }
 
 function pageLoad() {
-    var patientCaseId = getIframeQueryString("patientCaseId");
-    radiologyService = new RadiologyService();
-    radiologyService.getOneByPatientCaseId(patientCaseId).then(function (data) {
-        radiology = data;
-        builCTImagePanels();
-    });
+    patientCaseService = new PatientCaseService();
+    cTImageService = new CTImageService();
+    radiologyReportService = new RadiologyReportService();
+    radiologySharedNotesService = new RadiologySharedNotesService();
+
+    patientCaseId = getIframeQueryString("patientCaseId");
+    if (patientCaseId == "undefined" || patientCaseId == null) patientCaseId = 0;
+
+    patientCaseService.getOneById(patientCaseId)
+        .then(function (data) {
+            return Promise.all([cTImageService.getListByPatientCaseId(patientCaseId),
+                radiologyReportService.getOneById(data.radiologyReportId || 0),
+                radiologySharedNotesService.getOneById(data.radiologySharedNotesId || 0)
+            ])
+        }).then(function (data) {
+            arrCTImages = data[0];
+            radiologyReport = data[1];
+            radiologySharedNotes = data[2];
+            radiologySharedNotes.patientCaseId = patientCaseId;
+            builCTImagePanels(data[0]);
+            buildReportPanel(data[1]);
+            buildSharedNotes();
+        }).catch(function (message) {
+            $.messager.alert('error', message, "error");
+        });
 }
 
-function builCTImagePanels() {
-    radiology.ctImages.forEach(function (image, index) {
+function builCTImagePanels(ctImages) {
+    ctImages.forEach(function (image, index) {
         var $btn = $("<button></button>")
             .linkbutton({
                 text: "image" + index
@@ -84,9 +111,10 @@ function builCTImagePanels() {
         }
         ctImagePanel.build(image);
         arrPnlCTImages.push(ctImagePanel);
-    });
+    });  
+}
 
-
+function buildReportPanel(radiologyReport) {
     pnlReport = new RadiologyReportPanel();
     pnlReport.id = "pnlReport";
     pnlReport.title = "Reports";
@@ -104,8 +132,10 @@ function builCTImagePanels() {
         enableShowBtns();
         showNormalPanel();
     }
-    pnlReport.build(radiology);
-    
+    pnlReport.build(radiologyReport);
+}
+
+function buildSharedNotes() {
 
     pnlSharedNotes = new RadiologySharedNotesPanel();
     pnlSharedNotes.id = "pnlSharedNotes";
@@ -124,8 +154,7 @@ function builCTImagePanels() {
         enableShowBtns();
         showNormalPanel();
     }
-    pnlSharedNotes.build(radiology);
-    
+    pnlSharedNotes.build(radiologySharedNotes);
 }
 
 function closePanelExcept(panel) {

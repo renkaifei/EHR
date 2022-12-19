@@ -21,8 +21,10 @@ namespace EHRApp
 
         public async Task<List<CTImage>> GetListByPatientCaseId(int patientCaseId)
         {
-            return await m_cTImageRepository.GetListByPatientCaseId(patientCaseId)
+            List<CTImage> cTImages = await m_cTImageRepository.GetListByPatientCaseId(patientCaseId)
                     .ToListAsync().ConfigureAwait(false);
+            if (cTImages != null) cTImages.ForEach(item => item.PatientCaseId = patientCaseId);
+            return cTImages;
         }
     }
 }
