@@ -7,6 +7,7 @@
     this.width = 500;
     this.style = "";
     this.title = "";
+    this.tools = [];
     this.onBeforeMaximize = function () { };
     this.onMaximize = function () { };
     this.onMinimize = function () { };
@@ -23,6 +24,7 @@ Panel.prototype.build = function () {
         title: this.title,
         height: this.height,
         width: this.width,
+        tools:this.tools,
         style: this.style || {},
         minimizable: true,
         maximizable: true,

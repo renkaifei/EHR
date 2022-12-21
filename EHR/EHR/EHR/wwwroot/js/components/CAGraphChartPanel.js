@@ -7,6 +7,13 @@ CAGraphChartPanel.prototype = Object.create(Panel.prototype);
 CAGraphChartPanel.prototype.constructor = Panel;
 
 CAGraphChartPanel.prototype.build = function (arrData) {
+    var self = this;
+    this.tools = [{
+        iconCls: "icon-save",
+        handler: function () {
+            downloadFromCanvas(self.chartCA.canvas,"ca.jpg");
+        }
+    }];
     Panel.prototype.build.call(this);
     $panelBody = this.getJqueryObj().panel("body");
     var $canvas = $("<canvas></canvas>").appendTo($panelBody);
@@ -22,16 +29,32 @@ CAGraphChartPanel.prototype.buildCAChart = function (ctx, arrData) {
         realData.push(arrData[i].value);
         targetData.push(arrData[i].tumorMarker.maxValue);
     }
+
+
+    const plugin = {
+        id: 'customCanvasBackgroundColor',
+        beforeDraw: (chart, args, options) => {
+            const { ctx } = chart;
+            ctx.save();
+            ctx.globalCompositeOperation = 'destination-over';
+            ctx.fillStyle = options.color || '#99ffff';
+            ctx.fillRect(0, 0, chart.width, chart.height);
+            ctx.restore();
+        }
+    };
+
     var chart = new Chart(ctx, {
         type: "line",
         data: {
             labels: labels,
+            borderColor: "green",
             datasets: [
                 {
                     label: 'CA growth rate(U/ml)',
                     data: realData,
                     borderColor: "rgb(0,0,205)",
-                    tension: 0.1
+                    tension: 0.1,
+                    backgroundColor: '#9BD0F5',
                 },
                 {
                     label: 'Target value(U/ml)',
@@ -54,6 +77,9 @@ CAGraphChartPanel.prototype.buildCAChart = function (ctx, arrData) {
                     align: "center",
                     display: true,
                     text: "Carbohydrate antigen 19-9 (CA 19-9) Chart"
+                },
+                customCanvasBackgroundColor: {
+                    color: 'white',
                 }
             },
             scales: {
@@ -77,7 +103,8 @@ CAGraphChartPanel.prototype.buildCAChart = function (ctx, arrData) {
                     }
                 }
             }
-        }
+        },
+        plugins: [plugin]
     });
     return chart;
 }
