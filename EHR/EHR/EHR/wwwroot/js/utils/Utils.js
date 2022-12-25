@@ -46,3 +46,24 @@ function dataURLtoBlob(dataurl) {
     }
     return new Blob([u8arr], { type: mime });
 }
+
+function downloadPdf(ctx, name) {
+    var doc = new jsPDF('', "pt","a4");
+    var imgData = ctx.toDataURL({ format: 'jpg', quality: 1, width: ctx.width, height: ctx.height });
+    doc.addImage(imgData, 'JPEG', 40, 30, 500, 300);
+    doc.save(name);
+}
+
+function downloadRemoteImage(name, url) {
+    const aLink = document.createElement('a');
+    aLink.download = name;
+    aLink.href = url;
+    aLink.click();
+}
+
+function downloadRemoteImageToPdf(img, name) {
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    downloadPdf(canvas, name);
+}
