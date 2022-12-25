@@ -7,6 +7,19 @@ CEAGraphChartPanel.prototype = Object.create(Panel.prototype);
 CEAGraphChartPanel.prototype.constructor = Panel;
 
 CEAGraphChartPanel.prototype.build = function (arrData) {
+    var self = this;
+    this.tools = [{
+        iconCls: "icon-save",
+        handler: function () {
+            downloadFromCanvas(self.chartCEA.canvas, "cea.jpg");
+        }
+    }, {
+        iconCls: "icon-pdf",
+        handler: function () {
+            $.messager.alert('info', "Generating pdf, please wait patiently", "info");
+            downloadPdf(self.chartCEA.canvas, "cea.pdf");
+        }
+    }];
     Panel.prototype.build.call(this);
     var $panelBody = this.getJqueryObj().panel("body");
     var $canvas = $("<canvas></canvas>").appendTo($panelBody);
