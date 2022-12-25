@@ -13,7 +13,13 @@ CAGraphChartPanel.prototype.build = function (arrData) {
         handler: function () {
             downloadFromCanvas(self.chartCA.canvas,"ca.jpg");
         }
-    }];
+    }, {
+            iconCls: "icon-pdf",
+        handler: function () {
+                $.messager.alert('info', "Generating pdf, please wait patiently", "info");
+                downloadPdf(self.chartCA.canvas, "ca.pdf");
+            }
+        }];
     Panel.prototype.build.call(this);
     $panelBody = this.getJqueryObj().panel("body");
     var $canvas = $("<canvas></canvas>").appendTo($panelBody);
