@@ -74,7 +74,9 @@ function initializeComponent() {
     caGraphChartPanel = new CAGraphChartPanel();
     caGraphChartPanel.id = "pnlCAGraph";
     caGraphChartPanel.title = "CA Graph";
-    caGraphChartPanel.style = { "margin":"2px 5px"};
+    caGraphChartPanel.style = { "margin": "2px 5px" };
+    caGraphChartPanel.addImageDownloadTool();
+    caGraphChartPanel.addPdfDownloadTool();
     caGraphChartPanel.onBeforeMaximize = function () {
         disableShowBtn();
         closePanelExcept(caGraphChartPanel);

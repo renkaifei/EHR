@@ -9,6 +9,22 @@
         "dist/chart.min.js",
         "dist/chart.js"
       ]
+    },
+    {
+      "library": "@microsoft/signalr@latest",
+      "destination": "wwwroot/lib/microsoft/signalr/",
+      "files": [
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.min.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "jspdf@1.5.3",
+      "destination": "wwwroot/lib/jspdf/",
+      "files": [
+        "dist/jspdf.min.js"
+      ]
     }
   ]
 }

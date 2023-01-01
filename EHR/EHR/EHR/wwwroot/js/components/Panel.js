@@ -8,6 +8,7 @@
     this.style = "";
     this.title = "";
     this.tools = [];
+    this.fit = false;
     this.onBeforeMaximize = function () { };
     this.onMaximize = function () { };
     this.onMinimize = function () { };
@@ -22,9 +23,11 @@ Panel.prototype.build = function () {
     var self = this;
     this.getJqueryObj().panel({
         title: this.title,
+        noheader: this.title == "",
         height: this.height,
         width: this.width,
-        tools:this.tools,
+        tools: this.tools,
+        fit:this.fit,
         style: this.style || {},
         minimizable: true,
         maximizable: true,

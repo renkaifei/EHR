@@ -6,20 +6,28 @@
 CAGraphChartPanel.prototype = Object.create(Panel.prototype);
 CAGraphChartPanel.prototype.constructor = Panel;
 
-CAGraphChartPanel.prototype.build = function (arrData) {
+CAGraphChartPanel.prototype.addImageDownloadTool = function () {
     var self = this;
-    this.tools = [{
+    this.tools.push({
         iconCls: "icon-save",
         handler: function () {
-            downloadFromCanvas(self.chartCA.canvas,"ca.jpg");
+            downloadFromCanvas(self.chartCA.canvas, "ca.jpg");
         }
-    }, {
-            iconCls: "icon-pdf",
+    });
+}
+
+CAGraphChartPanel.prototype.addPdfDownloadTool = function () {
+    var self = this;
+    this.tools.push({
+        iconCls: "icon-pdf",
         handler: function () {
-                $.messager.alert('info', "Generating pdf, please wait patiently", "info");
-                downloadPdf(self.chartCA.canvas, "ca.pdf");
-            }
-        }];
+            $.messager.alert('info', "Generating pdf, please wait patiently", "info");
+            downloadPdf(self.chartCA.canvas, "ca.pdf");
+        }
+    });
+}
+
+CAGraphChartPanel.prototype.build = function (arrData) {
     Panel.prototype.build.call(this);
     $panelBody = this.getJqueryObj().panel("body");
     var $canvas = $("<canvas></canvas>").appendTo($panelBody);
