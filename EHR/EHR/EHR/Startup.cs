@@ -114,8 +114,13 @@ namespace EHR
 
             app.UseAuthorization();
 
+           
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                   name: "Mobile",
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=PatientCase}/{action=Index}/{id?}");

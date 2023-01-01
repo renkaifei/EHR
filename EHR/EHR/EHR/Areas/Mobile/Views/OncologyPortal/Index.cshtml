@@ -1,0 +1,33 @@
+﻿@{ 
+    Layout = "_LayoutMobile";
+}
+<table style="margin:0 auto;">
+    <caption>Oncology Portal</caption>
+    <tbody>
+        <tr>
+            <td id="addressBookContainer"></td>
+            <td id="diaryContainer"></td>
+            <td id="pathologyContainer"></td>
+        </tr>
+        <tr>
+            <td id="appointmentsContainer"></td>
+            <td id="educationContainer"></td>
+            <td id="questionnairesContainer"></td>
+        </tr>
+        <tr>
+            <td id="cardiologyContainer"></td>
+            <td id="medicationsContainer"></td>
+            <td id="radiologyContainer"></td>
+        </tr>
+        <tr>
+            <td id="decisionMakingContainer"></td>
+            <td id="myHealthContainer"></td>
+            <td id="visitNotesContainer"></td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="~/js/mobile/components/card.js"></script>
+    <script src="~/js/mobile/views/oncologyPortal/index.js"></script>
+}
