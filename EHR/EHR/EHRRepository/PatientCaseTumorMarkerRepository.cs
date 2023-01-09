@@ -21,10 +21,11 @@ namespace EHRRepository
             m_dbContext = dbContext;
         }
 
-        public IQueryable<PatientCaseTumorMarker> GetListByPatientCaseId(int patientCaseId)
+        public IQueryable<PatientCaseTumorMarker> GetListByPatientCaseId(int patientCaseId,int tumorMarkerId)
         {
             IQueryable<PatientCaseTumorMarker> query = m_dbContext.PathologyTumorMarkers;
             if (patientCaseId != 0) query = query.Where(item => item.PatientCaseId == patientCaseId);
+            if (tumorMarkerId != 0) query = query.Where(item => item.TumorMarkerId == tumorMarkerId);
             return query;
         }
     }

@@ -23,5 +23,10 @@ namespace EHRRepository
         {
             return m_dbContext.TumorMarkers;
         }
+
+        public IQueryable<TumorMarker> GetOneByName(string name)
+        {
+            return m_dbContext.TumorMarkers.Where(item => item.Name == name);
+        }
     }
 }

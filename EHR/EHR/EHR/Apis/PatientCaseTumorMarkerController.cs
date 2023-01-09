@@ -41,5 +41,23 @@ namespace EHR.Apis
             }
             return result;
         }
+
+        [HttpPost]
+        [Route("api/patientCaseTumorMarker/getCAListByPatientCaseId")]
+        public async Task<OutputBaseViewModel> GetCAListByPatientCaseId([FromForm] int patientCaseId)
+        {
+            ResultsViewModel<PatientCaseTumorMarker> result = new ResultsViewModel<PatientCaseTumorMarker>();
+            try
+            {
+                result.Data = await m_patientCaseTumorMarkerApp.GetCAListByPatientCaseIdAsync(patientCaseId)
+                    .ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                result.Status = 100102;
+                result.Message = ex.GetMessage();
+            }
+            return result;
+        }
     }
 }

@@ -77,6 +77,7 @@ function initializeComponent() {
     caGraphChartPanel.style = { "margin": "2px 5px" };
     caGraphChartPanel.addImageDownloadTool();
     caGraphChartPanel.addPdfDownloadTool();
+    caGraphChartPanel.addOpenWinTool();
     caGraphChartPanel.onBeforeMaximize = function () {
         disableShowBtn();
         closePanelExcept(caGraphChartPanel);

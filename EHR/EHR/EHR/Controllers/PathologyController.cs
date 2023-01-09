@@ -12,5 +12,10 @@ namespace EHR.Controllers
         {
             return View();
         }
+
+        public IActionResult CAGraph() 
+        {
+            return View();
+        }
     }
 }

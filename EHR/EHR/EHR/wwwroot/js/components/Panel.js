@@ -9,6 +9,8 @@
     this.title = "";
     this.tools = [];
     this.fit = false;
+    this.minimizable = true;
+    this.maximizable = true;
     this.onBeforeMaximize = function () { };
     this.onMaximize = function () { };
     this.onMinimize = function () { };
@@ -29,8 +31,8 @@ Panel.prototype.build = function () {
         tools: this.tools,
         fit:this.fit,
         style: this.style || {},
-        minimizable: true,
-        maximizable: true,
+        minimizable: this.minimizable,
+        maximizable: this.maximizable,
         closable: false,
         onBeforeMaximize: function () {
             self.onBeforeMaximize();

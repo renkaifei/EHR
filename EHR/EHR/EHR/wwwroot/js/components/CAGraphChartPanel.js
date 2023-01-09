@@ -27,6 +27,16 @@ CAGraphChartPanel.prototype.addPdfDownloadTool = function () {
     });
 }
 
+CAGraphChartPanel.prototype.addOpenWinTool = function () {
+    var self = this;
+    this.tools.push({
+        iconCls: "icon-add",
+        handler: function () {
+            window.open("/Pathology/CAGraph","_blank");
+        }
+    });
+}
+
 CAGraphChartPanel.prototype.build = function (arrData) {
     Panel.prototype.build.call(this);
     $panelBody = this.getJqueryObj().panel("body");
