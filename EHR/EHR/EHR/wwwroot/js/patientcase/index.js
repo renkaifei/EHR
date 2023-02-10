@@ -62,65 +62,40 @@ function initializeComponent() {
         width: 295,
         border: false,
         data: [{
-            text: "Chief Complaint and Histories",
+            text: "Shared Decision-Marking",
+            status: "open",
+            children: []
+        }, {
+            text: "Patient Health Information",
             status: "open",
             children: [{
-                id: "menu_chiefComplaintHistories",
-                text: "Chief Complaint and Histories",
-                iconCls: "sidemenu-default-icon",
-                attributes: {
-                    "tag": "chiefComplaintHistories",
-                    "url": "/chiefComplaintHistories/Index"
-                }
+                id: "menu_patientHealthInformation",
+                text: "Patient Health Information",
+                iconCls: "sidemenu-default-icon"
             }]
         }, {
-            text: "Labortory Test Results",
-            status: "open",
+            text: "TEAM TALK",
+            status:"open",
             children: [{
-                id: "menu_pathology",
                 text: "Pathology",
-                iconCls: "sidemenu-default-icon",
-                attributes: {
-                    "tag": "pathology",
-                    "url": "/Pathology/Index"
-                }
+                children: [{
+                    text:"CA graph"
+                }, {
+                    text:"CEA graph"
+                }, {
+                    text:"Oncology flowsheet"
+                }]
             }, {
-                id: "menu_radiology",
                 text: "Radiology",
-                iconCls: "sidemenu-default-icon",
                 attributes: {
-                    "tag": "radiology",
-                    "url": "/Radiology/Index"
+                    url: "/Radiology/Index",
+                    tag:"menu_radiology"
                 }
             }]
         }, {
-            text: "Physical Examinaition"
+            text: "OPTION TALK"
         }, {
-            text: "Assessment"
-        }, {
-            text: "Planning"
-        }, {
-            text: "Orders",
-            status: "closed",
-            children: [{
-                text: "Patient portal"
-            }, {
-                text: "Pathology"
-            }, {
-                text: "Radiology"
-            }, {
-                text: "Medications"
-            }, {
-                text: "Therapies"
-            }, {
-                text: "Follow-up visit"
-            }]
-        }, {
-            text: "Documents",
-            status: "closed",
-            children: [{
-                text: "Shared Visit Notes and Plan"
-            }]
+            text: "DECISION TALK"
         }],
         onSelect: function (item) {
             if ("attributes" in item) {
@@ -134,25 +109,25 @@ function initializeComponent() {
         }
     });
 
-    connection.on("ReceivePathologyMessage", function (pathologyId) {
-        patientCase.pathologyId = pathologyId;
-        update_menu_pathology();
-    });
+    //connection.on("ReceivePathologyMessage", function (pathologyId) {
+    //    patientCase.pathologyId = pathologyId;
+    //    update_menu_pathology();
+    //});
 
-    connection.on("ReceiveRadiologyMessage", function (radiologyId) {
-        patientCase.radiologyId = radiologyId;
-        update_menu_radiology();
-    });
+    //connection.on("ReceiveRadiologyMessage", function (radiologyId) {
+    //    patientCase.radiologyId = radiologyId;
+    //    update_menu_radiology();
+    //});
 
-    connection.on("ReceiveChiefComplaintHistoriesMessage", function (chiefComplaintHistoriesId) {
-        patientCase.chiefComplaintHistoriesId = chiefComplaintHistoriesId;
-        update_menu_chiefComplaintHistories();
-    });
-    connection.start().then(function () {
+    //connection.on("ReceiveChiefComplaintHistoriesMessage", function (chiefComplaintHistoriesId) {
+    //    patientCase.chiefComplaintHistoriesId = chiefComplaintHistoriesId;
+    //    update_menu_chiefComplaintHistories();
+    //});
+    //connection.start().then(function () {
         
-    }).catch(function (err) {
-        return console.error(err.toString());
-    });
+    //}).catch(function (err) {
+    //    return console.error(err.toString());
+    //});
 }
 
 function pageLoad() {
@@ -166,9 +141,9 @@ function pageLoad() {
     //initialize test data;
     var patientCaseId = 1;
 
-    connection.invoke("WatchPatientCase", patientCaseId).catch(function (err) {
-        return console.error(err.toString());
-    });
+    //connection.invoke("WatchPatientCase", patientCaseId).catch(function (err) {
+    //    return console.error(err.toString());
+    //});
 
     //get patientCaseInfo;
     patientCaseService.getOneById(patientCaseId).then(function (data) {
@@ -220,6 +195,7 @@ function showPatientDetailInfo() {
 
 function update_menu_chiefComplaintHistories() {
     var menu_chiefComplaintHistories_node = $(".sidemenu-tree").eq(0).tree("find", "menu_chiefComplaintHistories");
+    if (menu_chiefComplaintHistories_node == null) return;
     $(".sidemenu-tree").eq(0).tree("update", {
         target: menu_chiefComplaintHistories_node.target,
         iconCls: patientCase.chiefComplaintHistoriesId == null ? "icon-no" : "sidemenu-default-icon"
@@ -228,6 +204,7 @@ function update_menu_chiefComplaintHistories() {
 
 function update_menu_pathology() {
     var menu_pathology_node = $(".sidemenu-tree").eq(1).tree("find", "menu_pathology");
+    if (menu_pathology_node == null) return;
     $(".sidemenu-tree").eq(1).tree("update", {
         target: menu_pathology_node.target,
         iconCls: patientCase.pathologySharedNotesId == null ? "icon-no" : "sidemenu-default-icon"
@@ -236,6 +213,7 @@ function update_menu_pathology() {
 
 function update_menu_radiology() {
     var menu_radiology_node = $(".sidemenu-tree").eq(1).tree("find", "menu_radiology");
+    if (menu_radiology_node == null) return;
     $(".sidemenu-tree").eq(1).tree("update", {
         target: menu_radiology_node.target,
         iconCls: patientCase.radiologySharedNotesId == null ? "icon-no" : "sidemenu-default-icon"

@@ -94,7 +94,7 @@ function builCTImagePanels(ctImages) {
         $("<div></div>").attr("id", id).insertBefore($("#" + pnlReportId));
         var ctImagePanel = new CTImagePanel();
         ctImagePanel.id = id;
-        ctImagePanel.title = "CT SCANS";
+        ctImagePanel.title = "PET CT SCANS";
         ctImagePanel.style = { "margin": "2px" };
         ctImagePanel.onBeforeMaximize = function () {
             disableShowBtns();
@@ -117,7 +117,7 @@ function builCTImagePanels(ctImages) {
 function buildReportPanel(radiologyReport) {
     pnlReport = new RadiologyReportPanel();
     pnlReport.id = "pnlReport";
-    pnlReport.title = "Reports";
+    pnlReport.title = "Labaratory Reports";
     pnlReport.style = { "margin": "2px" };
     pnlReport.onBeforeMaximize = function () {
         disableShowBtns();
@@ -139,7 +139,7 @@ function buildSharedNotes() {
 
     pnlSharedNotes = new RadiologySharedNotesPanel();
     pnlSharedNotes.id = "pnlSharedNotes";
-    pnlSharedNotes.title = "Pathology Shared Notes(Objective)";
+    pnlSharedNotes.title = "SDM three talks";
     pnlSharedNotes.style = { "margin": "2px" };
     pnlSharedNotes.onBeforeMaximize = function () {
         disableShowBtns();
