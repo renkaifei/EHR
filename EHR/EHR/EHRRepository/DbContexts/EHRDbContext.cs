@@ -38,7 +38,7 @@ namespace EHRRepository.DbContexts
             new CTImageEntityTypeConfiguration().Configure(modelBuilder.Entity<CTImage>());
             new AllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<Allergy>());
             new PatientAllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientAllergy>());
-            
+            new CareOptionEntityTypeConfiguration().Configure(modelBuilder.Entity<CareOption>());
         }
 
         public DbSet<User> Users { get; set; }
@@ -73,5 +73,6 @@ namespace EHRRepository.DbContexts
 
         public DbSet<CTImage> CTImages { get; set; }
 
+        public DbSet<CareOption> CareOptions { get; set; }
     }
 }

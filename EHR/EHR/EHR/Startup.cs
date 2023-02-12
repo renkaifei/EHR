@@ -81,6 +81,8 @@ namespace EHR
             services.AddScoped<ChiefComplaintHistoriesApp>();
             services.AddScoped<CTImageRepository>();
             services.AddScoped<CTImageApp>();
+            services.AddScoped<CareOptionRepository>();
+            services.AddScoped<CareOptionApp>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

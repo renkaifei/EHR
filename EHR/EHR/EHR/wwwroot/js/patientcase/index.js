@@ -95,7 +95,16 @@ function initializeComponent() {
         }, {
             text: "OPTION TALK"
         }, {
-            text: "DECISION TALK"
+            text: "DECISION TALK",
+            children: [
+                {
+                    text: "DECISION TALK",
+                    attributes: {
+                        url: "/DecsionTalk/Index",
+                        tag: "menu_decsionTalk"
+                    }
+                }
+            ]
         }],
         onSelect: function (item) {
             if ("attributes" in item) {
