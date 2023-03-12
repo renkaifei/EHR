@@ -1,0 +1,21 @@
+﻿<div style="margin-top:2px">
+    <button type="button" id="btnShowCareOption1Panel">Care Option 1</button>
+    <button type="button" id="btnShowCareOption2Panel">Care Option 2</button>
+    <button type="button" id="btnShowCareOption3Panel">Care Option 3</button>
+    <button type="button" id="btnShowCareOption4Panel">Care Option 4</button>
+    <button type="button" id="btnShowSDMThreeTalks">SDM Three Talks</button>
+</div>
+<div id="panelContainer" style="display:flex;height:100%;width:1050px;flex-flow:wrap;flex:1;overflow:auto">
+    <div id="careOption1Panel"></div>
+    <div id="careOption2Panel"></div>
+    <div id="careOption3Panel"></div>
+    <div id="careOption4Panel"></div>
+    <div id="sdmThreeTalksPanel"></div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/js/utils/Utils.js"></script>
+    <script src="~/js/components/careOptionDataGridPanel.js"></script>
+    <script src="~/js/pathology/index.js"></script>
+}
