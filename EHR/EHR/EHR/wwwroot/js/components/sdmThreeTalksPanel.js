@@ -1,19 +1,19 @@
-﻿function PathologySharedNotesPanel() {
+﻿function SDMThreeTalksPanel() {
     Panel.call(this);
 }
 
-PathologySharedNotesPanel.prototype = Object.create(Panel.prototype);
-PathologySharedNotesPanel.prototype.constructor = Panel;
+SDMThreeTalksPanel.prototype = Object.create(Panel.prototype);
+SDMThreeTalksPanel.prototype.constructor = Panel;
 
-PathologySharedNotesPanel.prototype.build = function (pathologySharedNotes) {
+SDMThreeTalksPanel.prototype.build = function () {
     Panel.prototype.build.call(this);
     $panelBody = this.getJqueryObj().panel("body");
-    $("<textarea id='sdmThreeTalksEditor'></textarea>").appendTo($panelBody);
-    var CKEditor = CKEDITOR.replace('sdmThreeTalksEditor');
+    $("<textarea id='sharedNotesEditor'></textarea>").appendTo($panelBody);
+    var CKEditor = CKEDITOR.replace('sharedNotesEditor');
     CKEditor.on('instanceReady', function () {
         CKEditor.setData(pathologySharedNotes.sharedNotes);
     });
-    var $btn = $("<button></button").text("save").css({"float":"right","margin":"2px"}).appendTo($panelBody).linkbutton();
+    var $btn = $("<button></button").text("save").css({ "float": "right", "margin": "2px" }).appendTo($panelBody).linkbutton();
     $btn.on("click", function () {
         var data = CKEDITOR.instances.sharedNotesEditor.getData();
         pathologySharedNotes.sharedNotes = data;

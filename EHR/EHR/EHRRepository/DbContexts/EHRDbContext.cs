@@ -39,6 +39,7 @@ namespace EHRRepository.DbContexts
             new AllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<Allergy>());
             new PatientAllergyEntityTypeConfiguration().Configure(modelBuilder.Entity<PatientAllergy>());
             new CareOptionEntityTypeConfiguration().Configure(modelBuilder.Entity<CareOption>());
+            new SDMThreeTalkEntityTypeConfiguration().Configure(modelBuilder.Entity<SDMThreeTalk>());
         }
 
         public DbSet<User> Users { get; set; }
@@ -74,5 +75,7 @@ namespace EHRRepository.DbContexts
         public DbSet<CTImage> CTImages { get; set; }
 
         public DbSet<CareOption> CareOptions { get; set; }
+
+        public DbSet<SDMThreeTalk> SDMThreeTalks { get; set; }
     }
 }

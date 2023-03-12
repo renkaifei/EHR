@@ -1,4 +1,4 @@
 ﻿"use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/patientCaseHub").build();
+//var connection = new signalR.HubConnectionBuilder().withUrl("/patientCaseHub").build();
 

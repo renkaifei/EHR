@@ -100,8 +100,8 @@ function initializeComponent() {
                 {
                     text: "DECISION TALK",
                     attributes: {
-                        url: "/DecsionTalk/Index",
-                        tag: "menu_decsionTalk"
+                        url: "/DecisionTalk/Index",
+                        tag: "menu_decisionTalk"
                     }
                 }
             ]

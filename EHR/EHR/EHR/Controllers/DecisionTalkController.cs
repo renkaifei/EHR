@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EHR.Controllers
 {
-    public class DecsionTalkController : Controller
+    public class DecisionTalkController : Controller
     {
         public IActionResult Index()
         {

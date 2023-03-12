@@ -22,7 +22,7 @@ namespace EHR.Apis
         }
 
         [HttpPost]
-        [Route("api/careOpion/getAll")]
+        [Route("api/careOption/getAll")]
         public async Task<OutputBaseViewModel> GetAll()
         {
             ResultsViewModel<CareOption> result = new ResultsViewModel<CareOption>();

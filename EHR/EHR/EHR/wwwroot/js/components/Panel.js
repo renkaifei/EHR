@@ -11,6 +11,7 @@
     this.fit = false;
     this.minimizable = true;
     this.maximizable = true;
+    this.closable = false;
     this.onBeforeMaximize = function () { };
     this.onMaximize = function () { };
     this.onMinimize = function () { };
@@ -33,7 +34,7 @@ Panel.prototype.build = function () {
         style: this.style || {},
         minimizable: this.minimizable,
         maximizable: this.maximizable,
-        closable: false,
+        closable: this.closable,
         onBeforeMaximize: function () {
             self.onBeforeMaximize();
         },
