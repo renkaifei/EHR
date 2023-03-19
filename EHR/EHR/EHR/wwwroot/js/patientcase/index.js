@@ -93,7 +93,16 @@ function initializeComponent() {
                 }
             }]
         }, {
-            text: "OPTION TALK"
+            text: "OPTION TALK",
+            children: [
+                {
+                    text: "OPTION TALK",
+                    attributes: {
+                        url: "/OptionTalk/Index",
+                        tag: "menu_optionTalk"
+                    }
+                }
+            ]
         }, {
             text: "DECISION TALK",
             children: [
