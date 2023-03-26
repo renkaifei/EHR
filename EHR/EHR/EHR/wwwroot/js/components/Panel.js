@@ -12,6 +12,7 @@
     this.minimizable = true;
     this.maximizable = true;
     this.closable = false;
+    this.footer = "";
     this.onBeforeMaximize = function () { };
     this.onMaximize = function () { };
     this.onMinimize = function () { };
@@ -30,7 +31,8 @@ Panel.prototype.build = function () {
         height: this.height,
         width: this.width,
         tools: this.tools,
-        fit:this.fit,
+        fit: this.fit,
+        footer:this.footer,
         style: this.style || {},
         minimizable: this.minimizable,
         maximizable: this.maximizable,
@@ -66,4 +68,9 @@ Panel.prototype.open = function () {
 
 Panel.prototype.maximize = function () {
     this.getJqueryObj().panel("maximize");
+}
+
+Panel.prototype.appendChildToBody = function (child) {
+    var panelBody = this.getJqueryObj().panel("body");
+    panelBody.append(child);
 }

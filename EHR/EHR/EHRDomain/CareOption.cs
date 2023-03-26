@@ -14,10 +14,12 @@ namespace EHRDomain
 
         public string Answer { get; set; }
 
-        public int OptionType { get; set; }
+        public string OptionType { get; set; }
 
         public string CreateTime { get; set; }
 
         public string UpdateTime { get; set; }
+
+        public string OrderNo { get; set; }
     }
 }

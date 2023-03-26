@@ -17,10 +17,10 @@ namespace EHRRepository.DbContexts.EntityTypeConfigurations
             builder.Property(b => b.Id).HasColumnType("integer").IsRequired();
             builder.Property(b => b.Question).HasColumnType("varchar(512)").IsRequired();
             builder.Property(b => b.Answer).HasColumnType("varchar(1024)").IsRequired();
-            builder.Property(b => b.OptionType).HasColumnType("integer").IsRequired();
+            builder.Property(b => b.OptionType).HasColumnType("varchar(10)").IsRequired();
             builder.Property(b => b.CreateTime).HasColumnType("datetime").IsRequired();
             builder.Property(b => b.UpdateTime).HasColumnType("datetime").IsRequired();
-
+            builder.Property(b => b.OrderNo).HasColumnType("integer").IsRequired();
             builder.HasKey(b => b.Id);
         }
     }

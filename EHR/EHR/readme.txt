@@ -11,3 +11,4 @@
 10 radiologySharedNotes模块异常编码 101001 - 101099
 11 CTImage模块异常编码 101101-101199
 12 CareOption 模块异常代码 101201-101299
+13 doctor record module exception code range :101301-101399

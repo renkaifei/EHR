@@ -5,4 +5,5 @@
     this.optionType = 0;
     this.createTime = new Date();
     this.updateTime = new Date();
+    this.orderNo = 0;
 }

@@ -5,13 +5,106 @@
     <button id="btnShowCareOption4Panel">Care Options 4</button>
 </div>
 <div id="panelContainer" style="display: flex; height: 100%; width: 1050px; flex-flow: wrap; flex: 1; overflow: auto">
-    <div id="careOption1Panel"></div>
-    <div id="careOption2Panel"></div>
-    <div id="careOption3Panel"></div>
-    <div id="careOption4Panel"></div>
+    <div id="careOption1Panel">
+        <h3>Option 1</h3>
+        <table id="careOption1Table" class="ehr-table">
+            <thead>
+                <tr>
+                    <th>Frequently asked questions</th>
+                    <th>Long course chemoRT with capecitabine or infusional 5-fluorouracil followed by chemotherapy for 12-16 week with FOLFOX or XELOX</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="careOption1PanelFooter">
+        <label>Preference</label>
+        <select>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+
+    <div id="careOption2Panel">
+        <h3>Option 2</h3>
+        <table id="careOption2Table">
+            <thead>
+                <tr>
+                    <th>Frequently asked questions</th>
+                    <th>Short course RT followed by chemotherapy for 12-16 weeks with FOLFOX or XELOX</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="careOption2PanelFooter">
+        <label>Preference</label>
+        <select>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+
+    <div id="careOption3Panel">
+        <h3>Option 3</h3>
+        <table id="careOption3Table">
+            <thead>
+                <tr>
+                    <th>Frequently asked questions</th>
+                    <th>Chemotherapy for 12-16 weeks with FOLFOX or XELOX followed by long course chemoRT with capecitabine or infusional 5-flusional or short course RT</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="careOption3PanelFooter">
+        <label>Preference</label>
+        <select>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+
+    <div id="careOption4Panel">
+        <h4>Option 4</h4>
+        <table id="careOption4Table">
+            <thead>
+                <tr>
+                    <th>Frequently asked questions</th>
+                    <th>No treatment</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="careOption4PanelFooter">
+        <label>Preference</label>
+        <select>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div style="width:1020px">
+        <textarea id='careOptionDoctorRecordEditor'></textarea>
+    </div>
 </div>
 
 @section Scripts{
+    <script src="~/js/utils/Utils.js"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
     <script src="~/js/components/Panel.js"></script>
+    <script src="~/js/components/ehrGrid.js"></script>
+    <script src="~/js/domain/careOption.js"></script>
+    <script src="~/js/domain/doctorRecord.js"></script>
+    <script src="~/js/service/careOptionService.js"></script>
+    <script src="~/js/service/doctorRecordService.js"></script>
     <script src="~/js/decisionTalk/index.js"></script>
 }
