@@ -12,3 +12,6 @@
 11 CTImage模块异常编码 101101-101199
 12 CareOption 模块异常代码 101201-101299
 13 doctor record module exception code range :101301-101399
+14 frequently asked questions module exception code range:101401 -101499
+15 treatment method module exception code range:101501-101599
+16 treatnebt option module exception code range:101601-101699

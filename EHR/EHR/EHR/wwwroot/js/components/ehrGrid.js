@@ -18,3 +18,7 @@ EHRGrid.prototype.addRow = function (data) {
     });
     $row.appendTo(this.getBody());
 }
+
+EHRGrid.prototype.clearBody = function () {
+    this.getBody().html("");
+}

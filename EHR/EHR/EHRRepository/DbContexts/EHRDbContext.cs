@@ -41,6 +41,9 @@ namespace EHRRepository.DbContexts
             new CareOptionEntityTypeConfiguration().Configure(modelBuilder.Entity<CareOption>());
             new SDMThreeTalkEntityTypeConfiguration().Configure(modelBuilder.Entity<SDMThreeTalk>());
             new DoctorRecordEntityTypeConfiguration().Configure(modelBuilder.Entity<DoctorRecord>());
+            new FrequentlyAskedQuestionsEntityTypeConfiguration().Configure(modelBuilder.Entity<FrequentlyAskedQuestion>());
+            new TreatmentMethodEntityTypeConfiguration().Configure(modelBuilder.Entity<TreatmentMethod>());
+            new TreatmentOptionEntityTypeConfiguration().Configure(modelBuilder.Entity<TreatmentOption>());
         }
 
         public DbSet<User> Users { get; set; }
@@ -80,5 +83,11 @@ namespace EHRRepository.DbContexts
         public DbSet<SDMThreeTalk> SDMThreeTalks { get; set; }
 
         public DbSet<DoctorRecord> DoctorRecords { get; set; }
+
+        public DbSet<FrequentlyAskedQuestion> FrequentlyAskedQuestions { get; set; }
+
+        public DbSet<TreatmentMethod> TreatmentMethods { get; set; }
+
+        public DbSet<TreatmentOption> TreatmentOptions { get; set; }
     }
 }

@@ -85,6 +85,21 @@ namespace EHR
             services.AddScoped<CareOptionApp>();
             services.AddScoped<DoctorRecordRepository>();
             services.AddScoped<DoctorRecordApp>();
+
+            #region FrequentlyAskedQuestion module
+            services.AddScoped<FrequentlyAskedQuestionRepository>();
+            services.AddScoped<FrequentlyAskedQuestionApp>();
+            #endregion
+
+            #region treatment method module
+            services.AddScoped<TreatmentMethodRepository>();
+            services.AddScoped<TreatmentMethodApp>();
+            #endregion
+
+            #region TreatemtOption module
+            services.AddScoped<TreatmentOptionRepository>();
+            services.AddScoped<TreatmentOptionApp>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
