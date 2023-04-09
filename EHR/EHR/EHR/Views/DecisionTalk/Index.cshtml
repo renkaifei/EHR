@@ -3,6 +3,7 @@
     <button id="btnShowCareOption2Panel">Care Options 2</button>
     <button id="btnShowCareOption3Panel">Care Options 3</button>
     <button id="btnShowCareOption4Panel">Care Options 4</button>
+    <button id="btnShowCareOptionDoctorRecordEditorPanel">SDM THREE TALKS</button>
 </div>
 <div id="panelContainer" style="display: flex; height: 100%; width: 1050px; flex-flow: wrap; flex: 1; overflow: auto">
     <div id="careOption1Panel">
@@ -93,7 +94,9 @@
         </select>
     </div>
     <div style="width:1020px">
-        <textarea id='careOptionDoctorRecordEditor'></textarea>
+        <div id="careOptionDoctorRecordEditorPanel">
+            <textarea id='careOptionDoctorRecordEditor'></textarea>
+        </div>
     </div>
 </div>
 
@@ -102,9 +105,13 @@
     <script src="~/lib/ckeditor/ckeditor.js"></script>
     <script src="~/js/components/Panel.js"></script>
     <script src="~/js/components/ehrGrid.js"></script>
-    <script src="~/js/domain/careOption.js"></script>
+    <script src="~/js/domain/treatmentOption.js"></script>
+    <script src="~/js/domain/treatmentMethod.js"></script>
     <script src="~/js/domain/doctorRecord.js"></script>
-    <script src="~/js/service/careOptionService.js"></script>
+    <script src="~/js/domain/frequentlyAskedQuestion.js"></script>
     <script src="~/js/service/doctorRecordService.js"></script>
+    <script src="~/js/service/treatmentMethodService.js"></script>
+    <script src="~/js/service/treatmentOptionService.js"></script>
+    <script src="~/js/service/frequentlyAskedQuestionService.js"></script>
     <script src="~/js/decisionTalk/index.js"></script>
 }

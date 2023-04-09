@@ -38,6 +38,21 @@ namespace EHR.Apis
             return result;
         }
 
-
+        [HttpPost]
+        [Route("api/TreatmentOption/GetAll")]
+        public async Task<OutputBaseViewModel> GetAll()
+        {
+            ResultsViewModel<TreatmentOption> result = new ResultsViewModel<TreatmentOption>();
+            try
+            {
+                result.Data = await _treatmentOptionApp.GetAll();
+            }
+            catch (Exception ex)
+            {
+                result.Status = 101602;
+                result.Message = ex.GetMessage();
+            }
+            return result;
+        }
     }
 }

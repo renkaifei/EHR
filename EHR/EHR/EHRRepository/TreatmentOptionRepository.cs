@@ -22,5 +22,11 @@ namespace EHRRepository
             IQueryable<TreatmentOption> query = m_dbContext.TreatmentOptions.Where(item => item.QuestionId == questionId);
             return query;
         }
+
+        public IQueryable<TreatmentOption> GetAll()
+        {
+            IQueryable<TreatmentOption> query = m_dbContext.TreatmentOptions;
+            return query;
+        }
     }
 }

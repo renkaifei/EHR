@@ -23,6 +23,9 @@ namespace EHRApp
             return await _treatmentOptionRepository.GetListByQuestionId(questionId).ToListAsync();
         }
 
-
+        public async Task<List<TreatmentOption>> GetAll()
+        {
+            return await _treatmentOptionRepository.GetAll().ToListAsync();
+        }
     }
 }
